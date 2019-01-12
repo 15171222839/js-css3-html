@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <h3>判断素数</h3>
+  <input type="text" id="box">
+  <input type="button" value="判断" id="start">
+
+  <script>
+    var start = document.getElementById("start")
+    var box = document.getElementById("box")
+    start.onclick = function(){
+      var m = box.value
+      if(m%2 != 0 && m%3 != 0 && m!=1 || m ==2 || m ==3){
+        console.log(true)
+      }else{
+        console.log(false)
+      }
+    }
+  </script>
+</body>
+</html>

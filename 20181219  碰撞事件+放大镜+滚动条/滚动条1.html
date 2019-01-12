@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    *{
+      margin:0;
+      padding:0;
+    }
+    #bigBox{
+      width:400px;
+      height:500px;
+      margin:0 auto;
+      border:1px solid grey;
+      position:relative;
+      overflow: hidden;
+    }
+    #box{
+      width:90%;
+      text-indent:2em ;
+      position: absolute;
+      top:0;
+      left:0;
+    }
+    #right{
+      left:362px;
+      top:0;
+      width:40px;
+      height:500px;
+      border-left: 1px solid grey;
+      position:absolute;
+    }
+    #move{
+      width:38px;
+      height: 60px;
+      background:blueviolet;
+      position:absolute;
+      top:0;
+    }
+  </style>
+</head>
+<body>
+  <div id="bigBox">
+    <div id="box">
+      <p>在庆祝改革开放40周年大会上，获评的改革开放杰出贡献人员上台领奖的同时，响起的背景音乐是解放军军乐团在现场奏响的曲目《春天的故事》。这首中国改革开放的标志性曲目，出现在第一次以改革开放为主题的国家级表彰大会上，象征意义不言而喻。昨天，北京青年报记者对现场乐队指挥、解放军军乐团团长张海峰进行了专访。张海峰透露，采用《春天的故事》作为国家颁奖典礼的配乐，是一个打破惯例之举。</p>
+      <p>在庆祝改革开放40周年大会上，获评的改革开放杰出贡献人员上台领奖的同时，响起的背景音乐是解放军军乐团在现场奏响的曲目《春天的故事》。这首中国改革开放的标志性曲目，出现在第一次以改革开放为主题的国家级表彰大会上，象征意义不言而喻。昨天，北京青年报记者对现场乐队指挥、解放军军乐团团长张海峰进行了专访。张海峰透露，采用《春天的故事》作为国家颁奖典礼的配乐，是一个打破惯例之举。</p>
+      <p>在庆祝改革开放40周年大会上，获评的改革开放杰出贡献人员上台领奖的同时，响起的背景音乐是解放军军乐团在现场奏响的曲目《春天的故事》。这首中国改革开放的标志性曲目，出现在第一次以改革开放为主题的国家级表彰大会上，象征意义不言而喻。昨天，北京青年报记者对现场乐队指挥、解放军军乐团团长张海峰进行了专访。张海峰透露，采用《春天的故事》作为国家颁奖典礼的配乐，是一个打破惯例之举。</p>
+      <p>在庆祝改革开放40周年大会上，获评的改革开放杰出贡献人员上台领奖的同时，响起的背景音乐是解放军军乐团在现场奏响的曲目《春天的故事》。这首中国改革开放的标志性曲目，出现在第一次以改革开放为主题的国家级表彰大会上，象征意义不言而喻。昨天，北京青年报记者对现场乐队指挥、解放军军乐团团长张海峰进行了专访。张海峰透露，采用《春天的故事》作为国家颁奖典礼的配乐，是一个打破惯例之举。</p>
+      <p>在庆祝改革开放40周年大会上，获评的改革开放杰出贡献人员上台领奖的同时，响起的背景音乐是解放军军乐团在现场奏响的曲目《春天的故事》。这首中国改革开放的标志性曲目，出现在第一次以改革开放为主题的国家级表彰大会上，象征意义不言而喻。昨天，北京青年报记者对现场乐队指挥、解放军军乐团团长张海峰进行了专访。张海峰透露，采用《春天的故事》作为国家颁奖典礼的配乐，是一个打破惯例之举。</p>
+      <p>在庆祝改革开放40周年大会上，获评的改革开放杰出贡献人员上台领奖的同时，响起的背景音乐是解放军军乐团在现场奏响的曲目《春天的故事》。这首中国改革开放的标志性曲目，出现在第一次以改革开放为主题的国家级表彰大会上，象征意义不言而喻。昨天，北京青年报记者对现场乐队指挥、解放军军乐团团长张海峰进行了专访。张海峰透露，采用《春天的故事》作为国家颁奖典礼的配乐，是一个打破惯例之举。</p>
+      <p>在庆祝改革开放40周年大会上，获评的改革开放杰出贡献人员上台领奖的同时，响起的背景音乐是解放军军乐团在现场奏响的曲目《春天的故事》。这首中国改革开放的标志性曲目，出现在第一次以改革开放为主题的国家级表彰大会上，象征意义不言而喻。昨天，北京青年报记者对现场乐队指挥、解放军军乐团团长张海峰进行了专访。张海峰透露，采用《春天的故事》作为国家颁奖典礼的配乐，是一个打破惯例之举。</p>
+
+    </div>
+    <div id="right">
+      <div id="move"></div>
+    </div>
+  </div>
+  
+  <script>
+    function $(id){
+      return document.getElementById(id)
+    }
+    $("move").onmousedown = function(e){
+      var y = e.clientY - $("move").offsetTop;
+      document.onmousemove = function(ev){
+        var h = ev.clientY - y;//方块可移动距离
+        if(h <= 0){
+          h = 0;
+        }else if(h >= $("right").clientHeight - $("move").offsetHeight){
+          h = $("right").clientHeight - $("move").offsetHeight
+        }
+        $("move").style.top = h + "px";
+
+        //计算比例
+        var parsent = h / ($("right").clientHeight - $("move").offsetHeight)
+        $("box").style.top = -parsent * ($("box").offsetHeight - $("bigBox").clientHeight) + "px"
+      console.log(parsent)
+      }
+    }
+    document.onmouseup = function(){
+      document.onmousemove = null
+    }
+  </script>
+</body>
+</html>

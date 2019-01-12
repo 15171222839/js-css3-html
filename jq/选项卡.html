@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+      *{padding: 0;margin:0;list-style: none;}
+      a{text-decoration: none;}
+      .tab{width: 420px;margin:50px auto;border: 1px solid #ccc;height: 215px;}
+      .hd{height: 35px;line-height: 35px;font-size: 15px;background: #fff;}
+      .hd a{float: left; width: 140px;text-align: center;border-bottom: 1px solid #ccc; border-right:1px solid #ccc; box-sizing: border-box;color: #666;}
+      .hd a:last-child{border-right:none; }
+      .hd a.on{color: #f00; border-bottom: none;}
+      .bd{width: 420px; height: 180px;}
+      .bd .con{width: 420px; height: 180px;}
+      .bd .con ul{padding:10px 20px;}
+      .bd .con li{height: 30px;line-height: 26px;font-size: 13px;border-bottom: 1px solid #ddd;}
+      .bd .con li a{color: #888;}
+    </style>  
+</head>
+<body>
+    <div class="tab">
+        <div class="hd">
+          <a href="javascript:void(0)">国内新闻</a>
+          <a href="javascript:void(0)">国际新闻</a>
+          <a href="javascript:void(0)">本地新闻</a>
+        </div>
+        <div class="bd">
+          <div class="con">
+            <ul>
+              <li><a href="##">习近平主持召开中央深改组第三十八次会议</a></li>
+              <li><a href="##">4分钟速览!《大国外交》第二集《众行致远》</a></li>
+              <li><a href="##">李克强谈扶贫 张德江出席会议 俞正声 张高丽</a></li>
+              <li><a href="##">金砖国家领导人第九次会晤9月3-5日在厦门举行</a></li>
+              <li><a href="##">国土资源部官网公布这则重磅消息 你注意到了吗？</a></li>
+            </ul>
+          </div>
+          <div class="con">
+            <ul>
+              <li><a href="##">特朗普回应朝鲜试射导弹:所有选项都已摆桌上</a></li>
+              <li><a href="##">金正恩:发射导弹是对美韩军演的示威 是报复日本</a></li>
+              <li><a href="##">外媒:菲律宾"毒战"遭遇最血腥之日 一夜击毙32人</a></li>
+              <li><a href="##">温度 | 美国女记者飓风直播现场救下被困司机</a></li>
+              <li><a href="##">苹果三星又引领一个潮流？高端机起价要1000美元</a></li>
+            </ul>
+          </div>
+          <div class="con">
+            <ul>
+              <li><a href="##">排爆容器被当垃圾桶 地铁防爆球：我也很绝望啊</a></li>
+              <li><a href="##">武汉城市商业史出炉 商业诚信可追溯至南北朝</a></li>
+              <li><a href="##">合同签2300又涨价1000 驾校：合同不能管一辈子</a></li>
+              <li><a href="##">小区居民为方便违建水泥桥 城管花2万拆除将追讨</a></li>
+              <li><a href="##">今天最高温将跌至27℃ 凉爽天气有望持续到周末</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>    
+
+    <script src="jquery.min.js"></script>
+    <script src="选项卡插件.js"></script>
+    <script>
+      $(".tab").Tab({
+        maintag:".con",
+        effect:"top"
+      })
+      // $(".tab").Tab()
+    </script>
+</body>
+</html>

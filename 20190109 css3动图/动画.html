@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    img{
+      width:100px;
+      margin:200px auto;
+      display:block;
+      animation: move 1s infinite alternate;
+      /* animation: name duration timing-function delay iteration-count direction;
+      name              keyframe 名称。(必需，名称随意取)
+      duration          动画所花费的时间(必需)
+      timing-function   动画的速度曲线(默认：低速加快   ，linear匀速...)
+      delay             动画开始之前的延迟。(可选)
+      iteration-count   播放的次数。(n，infinite无限播放)
+      direction         轮流反向播放动画(默认normal正常播放，alternate正反向轮流) */
+    }
+    @keyframes move{
+      0%{
+        transform: scale(1)
+      }
+      100%{
+        transform: scale(1.4)
+      }
+    }
+  </style>
+</head>
+<body>
+  <img src="timg.jpg" alt="">
+</body>
+</html>

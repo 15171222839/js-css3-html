@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    *{
+      margin:0;
+      padding:0;
+    }
+    #bigBox{
+      width:300px;
+      height:100%;
+      margin:50px auto;
+    }
+    #box{
+      list-style: none;
+      width:300px;
+      height:100%;
+      border:2px solid black;
+    }
+    #box>li{
+      width:99%;
+      height:30px;
+      background:white;
+      margin-bottom:10px;
+      border:2px solid black;
+    }
+  </style>
+</head>
+<body>
+  <div id="bigBox">
+    <ul id="box"></ul><br />
+    <button id="btn">点击增加</button>
+  </div>
+  <script>
+    var oUl = document.getElementById("box")
+    var btn = document.getElementById("btn")
+    oUl.addEventListener("click",function(ev){
+      var target = ev.target || ev.srcElement;
+      if(target.nodeName == "LI"){
+        target.style.background = "red"
+      }
+    })
+    btn.onclick = function(){
+      var oLi = document.createElement("li")
+      oLi.innerHTML = "我是一个新的li"
+      oUl.appendChild(oLi)
+    }
+  </script>
+</body>
+</html>

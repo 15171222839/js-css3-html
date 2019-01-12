@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=input, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    #box{
+      width:600px;
+      height:100%;
+      margin:20px auto;
+      position:relative;
+    }
+    #T{
+      top:0;
+      right: 0;
+      position:absolute;
+      display:block;
+    }
+    #D{
+      top:0;
+      right: 0;
+      position:absolute;
+      display:none;
+      color:red;
+    }
+    #btn{
+      width:100%;
+      height:30px;
+    }
+    #one{
+      display:none;
+    }
+    #box>#btn:after{
+      content:">";
+      left:100px;
+      top:20px;
+      position:absolute;
+    }
+  </style>
+</head>
+<body>
+  <div id="box">
+    <input type="text" placeholder="请选择省份" id="btn">
+    <!-- <div id="dd">
+      <span id="T">&lt</span><span id="D">&gt</span>
+    </div> -->
+    <div id="one">
+      <p>湖北</p>
+      <p>陕西</p>
+      <p>河南</p>
+      <p>江苏</p>
+    </div>
+    <input type="text" placeholder="请选择城市" id="btn">
+    <div id="one">
+      <p>武汉</p>
+      <p>黄石</p>
+      <p>荆州</p>
+      <p>黄冈</p>
+    </div>
+    <input type="text" placeholder="请选择区" id="btn">
+    <div id="one">
+      <p>江夏</p>
+      <p>江汉</p>
+      <p>开发区</p>
+      <p>武昌</p>
+    </div> 
+  </div>
+
+  <script src="http://libs.baidu.com/jquery/2.1.1/jquery.min.js"></script>
+  <script>
+    $("#box #btn").click(function(){
+      $("#dd span").toggle()
+      $(this).next().slideToggle()
+    });
+
+  </script>
+</body>
+</html>

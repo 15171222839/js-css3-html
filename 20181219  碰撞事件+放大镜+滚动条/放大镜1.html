@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    *{
+      margin:0;
+      padding:0;
+    }
+    #enlarge{
+      position:relative;
+      width:900px;
+      height:100%;
+      margin:20px auto;
+    }
+    #smallBox{
+      width:300px;
+      height:300px;
+      border:1px solid rgba(0,0,0,0.3);
+      position:relative;
+    }
+    #smallBox>img{
+      width:100%;
+      height:100%;
+    }
+    #bigBox{
+      width:400px;
+      height:400px;
+      left:302px;
+      top:0;
+      position:absolute;
+      overflow: hidden;
+      display:none;
+      border:1px solid rgba(0,0,0,0.3);
+    }
+    #bigImg{
+      position: absolute;
+      z-index: 5;
+      left:0;
+      top:0;
+    }
+    #small{
+      z-index:1;
+      width:150px;
+      height:150px;
+      position:absolute;
+      background:rgba(0,0,0,0.3);
+      left:0;
+      top:0;
+      display:none;
+      cursor: move;
+    }
+  </style>
+</head>
+<body>
+  <div id="enlarge">
+    <div id="smallBox">
+      <img src="small.jpg" alt=""></img>
+      <div id="small"></div>
+    </div>
+    <div id="bigBox">
+      <img src="big.jpg" alt="" id="bigImg">
+    </div>
+  </div>
+  <script>
+    function $(id){
+      return document.getElementById(id)
+    }
+    //蒙层拖动事件
+    $("smallBox").onmouseover = function(){
+      $("small").style.display = "block"
+      $("bigBox").style.display = "block"
+    }
+    $("smallBox").onmouseout = function(){
+      $("small").style.display = "none"
+      $("bigBox").style.display = "none"
+    }
+
+    $("smallBox").onmousemove = function(e){
+      var x = e.clientX -$("enlarge").offsetLeft- $("smallBox").offsetLeft - $("small").offsetWidth/2
+      var y = e.clientY - $("smallBox").offsetTop - $("small").offsetHeight/2
+      console.log(e.clientX)
+      if(x < 0){
+        x = 0;
+      }else if(x > ($("smallBox").clientWidth - $("small").clientWidth)){
+        x = $("smallBox").clientWidth - $("small").clientWidth
+      }
+      if(y < 0){
+        y = 0;
+      }else if(y > $("smallBox").clientHeight - $("small").clientHeight){
+        y = $("smallBox").clientHeight - $("small").clientHeight
+      }
+
+      $("small").style.left = x + "px"
+      $("small").style.top = y + "px"
+
+      //小盒子移动x / (小盒子的宽-小盒子父级的宽) = 大盒子图片移动X / (大盒子图片的宽-大盒子父级的宽)
+      var bigx = $("small").offsetLeft * $("bigBox").clientWidth / ($("small").offsetWidth - $("smallBox").clientWidth)
+      var bigy = $("small").offsetTop * $("bigBox").clientHeight / ($("small").offsetHeight - $("smallBox").clientHeight)
+
+      $("bigImg").style.left = bigx + "px"
+      $("bigImg").style.top = bigy + "px"
+    }
+  </script>
+</body>
+</html>

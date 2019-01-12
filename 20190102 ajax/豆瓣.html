@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    *{
+      margin:0;
+      padding:0;
+    }
+    .box{
+      width:700px;
+      margin:20px auto;
+    }
+    .list{
+      list-style: none;
+      border-top: 1px dashed #ccc;
+      padding-left: 0;
+    }
+    .list>li{
+      overflow: hidden;
+      list-style: none;
+      border-bottom: 1px dashed #ccc;
+      padding: 12px 0;
+    }
+    .pic{
+      color: #bbb;
+      float: left;
+      padding-right: 25px;
+    }
+    .pic>a>img{
+      width:100px;
+    }
+    .info{
+      overflow: hidden;
+    }
+    .bd>p{
+      margin: 10px 0;
+      color: #666;
+      font-size: 14px;
+    }
+    a:visited {
+      color: #666699;
+      text-decoration: none;
+    }
+    a:link {
+      color: #37a;
+      text-decoration: none;
+    }
+    .pcolor{
+      color: #e09015;
+    }
+    .pageBox{
+      width: 1200px;
+      margin:0 auto;
+      text-align: center;
+    }
+    .page{
+      list-style: none;
+      width:700px;
+      margin-top:40px;
+      margin-bottom:100px;
+      display:flex;
+      justify-content:center;
+    }
+    .page li,.page a{
+      width:20px;
+      height: 20px;
+      line-height:20px;
+      font-size:12px;
+      margin-left:5px;
+      border:1px solid #eee;
+      text-align: center;
+      border-radius:4px;
+      cursor:pointer;
+    }
+    .page li{
+      background:#eee;
+      opacity:0.75;
+    }
+    .page .prev,.page .next{
+      display:block;
+      width:40px;
+      background-color:gray;
+      color:#fff;
+    }
+    .page li.active{
+      background-color:orange;
+    }
+    .page a.unClick{
+      background-color:#ccc;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h1>豆瓣电影 Top 250</h1>
+    <ul class="list">
+      <li>
+        <!-- <div class="pic">
+          <a href="https://movie.douban.com/subject/1292052/">
+            <img alt="" src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p480747492.webp">
+          </a>
+        </div>
+        <div class="info">
+          <div class="hd">
+            <a href="https://movie.douban.com/subject/1292052/" class="">
+              <span class="title">肖申克的救赎</span>
+              <span class="title"> The Shawshank Redemption</span>
+              <span class="other"> 月黑高飞(港)  /  刺激1995(台)</span>
+            </a>
+          </div>
+          <div class="bd">
+            <p class="bdFirst">
+              导演: 弗兰克·德拉邦特 Frank Darabont 主演: 蒂姆·罗宾斯 Tim Robbins /...<br>
+              1994 / 美国 / 犯罪 剧情
+            </p>
+            <p class="bdTwo">
+              <span class="pcolor">9.6</span>
+              <span>1252977人评价</span>
+            </p>
+            <p class="quote">
+              <span class="inq">希望让人自由。</span>
+            </p>
+          </div>
+        </div> -->
+      </li>
+    </ul>
+
+    <div class="pageBox">
+      <ul class="page">
+        <a href="javascript:void(0);" class="prev unClick">&lt;</a>
+        <li class="active">0</li>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+        <li>7</li>
+        <li>8</li>
+        <li>9</li>
+        <a href="javascript:void(0);" class="next">&gt;</a>
+      </ul>
+    </div>
+  </div>
+  
+  <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+  <script>
+    $(function(){
+      var totalNum = 250;
+      var countNum = 10;
+      var startNum = 0;
+      //点击某页
+      $('.page li').click(function(){
+        $(this).addClass("active").siblings().removeClass('active');
+        startNum=parseInt($(this).html());
+          dataget();
+      });
+      //点击下一页
+      $(".next").click(function(){
+        startNum++;
+        if(startNum >= totalNum/countNum){
+          startNum = 25;
+        }
+        console.log(startNum)
+        if(startNum > 9 && startNum <= 24){
+          for(var i=0;i<10;i++){
+            if(startNum == totalNum/countNum){
+              startNum = totalNum/countNum - 1;
+            }
+            $(".page li").eq(i).html( Number($(".page li").eq(i).html())+1);
+          }
+        }
+        $(".page li").eq(startNum).addClass("active").siblings().removeClass("active");
+        dataget();
+      })
+      //点击上一页
+      $(".prev").click(function(){
+        startNum--;
+        if(startNum == -1){
+          startNum = 0;
+        }
+        $(".page li").eq(startNum).addClass("active").siblings().removeClass("active");
+        dataget();
+      })
+      function dataget(){
+        $.ajax({
+          type:"get",
+          url:"https://api.douban.com/v2/movie/top250?count="+ countNum +"&start=" + startNum*countNum,
+          dataType:"jsonp",//存在跨域，类型改成jsonp就可以解决
+          jsonp:"callback",
+          success:function(res){
+            console.log(res)
+            console.log(res.total)
+            var list = res.subjects;
+            var divs = "";
+            for(var i=0;i<list.length;i++){
+              divs+="<li>";
+              divs+="<div class='pic'>";
+              divs+="<a href='" + list[i].alt + "'><img src='" + list[i].images.small + "'></a>"
+              divs+="</div>"
+              divs+="<div class='info'>"
+              divs+="<div class='hd'>"
+              divs+="<a href='" + list[i].alt + "'><span class='title'>" + list[i].title +"</span></a>"
+              divs+="</div>"
+              divs+="<div class='bd'>"
+              divs+="<p class='bdFirst'>导演：" + list[i].directors[0].name + "</p>"
+              divs+="<p class='bdFirst'>类型："
+              for(var j=0;j<list[i].genres.length;j++){
+                divs+="<span>" + list[i].genres[j] + "</span>/"
+              }
+              divs+="</p>"
+              divs+="<p class='bdTwo'><span class='pcolor'>" + list[i].rating.average + "</span> <span>" + list[i].collect_count + "人评价</span></p>"
+              divs+="</div></div>"
+              divs+="</li>";
+            }
+            $(".list").html(divs);
+          }
+        })
+      }
+      dataget();
+      //判断按钮显示个数
+
+    })
+  </script>
+</body>
+</html>

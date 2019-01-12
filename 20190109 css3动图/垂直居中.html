@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    *{
+      margin:0;
+      padding:0;
+    }
+    /* 方法1：table-cell */
+    /* .box{
+      width: 300px;
+      height: 300px;
+      border:1px solid black;
+      display: table-cell;
+      vertical-align: middle;
+      text-align: center;    
+    } */
+    /* 方法2：display:flex */
+    /* .box{
+      width: 300px;
+      height: 300px;
+      border:1px solid black;
+      display:flex;
+      align-items: center;
+      text-align: center;
+    } */
+    /* 方法3：绝对定位 */
+    /* .box{
+      width: 300px;
+      height: 300px;
+      border:1px solid black;
+      left:50%; 
+      position: relative;
+    }
+    span{
+      position: absolute;
+      top:50%;
+      transform: translateY(-50%);
+      text-align: center;
+    } */
+    /* 方法4：display:inline-block */
+    .box{
+      width: 300px;
+      height: 300px;
+      border:1px solid black;
+      text-align:center;
+      font-size: 0;
+    }
+    .box::after{
+      content:'';
+      width:0;
+      height:100%;
+      display:inline-block;
+      vertical-align:middle;
+    }
+    .box span{
+      vertical-align:middle;
+      display:inline-block;
+      font-size:16px;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <span>	规定完成动画所花费的时间，以秒或毫秒计	规定完成动画所花费的时间，以秒或毫秒</span>
+  </div>
+</body>
+</html>

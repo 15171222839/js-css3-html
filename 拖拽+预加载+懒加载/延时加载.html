@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <img src="1.jpg" data-src="2.jpg" alt="" id="imgSrc">
+  <button id="btn">点击</button>
+
+  <script>
+    var imgSrc = document.getElementById("imgSrc")
+    var btn = document.getElementById("btn")
+
+    btn.onclick = function(){
+      imgSrc.src = imgSrc.getAttribute("data-src")//getAttribute() 方法返回指定属性名的属性值。
+    }
+  </script>
+</body>
+</html>

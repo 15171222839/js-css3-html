@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <h2 id="picture"></h2>
+
+  <script>
+    var picture = document.getElementById("picture")
+    // var html = "<img src='1.jpg'>"
+    // picture.innerHTML = html;
+
+    // var img = document.createElement("img")
+    var img = new Image()      //创建一个img  相似于var img = document.createElement("img")
+    img.src = "1.jpg"
+    picture.appendChild(img)
+  </script>
+</body>
+</html>

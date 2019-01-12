@@ -1,0 +1,269 @@
+C:\Users\yy>ipconfig/all       //放在本地服务器，手机浏览（无线局域网——》IP4(首选)）
+
+懒加载+预加载（20181217）
+    var img = new Image()      //创建一个img  相似于var img = document.createElement("img")
+    console.log("已加载"+par.toFixed(0)+"%")  //toFixed() 方法可把 Number 四舍五入为指定小数位数的数字。
+
+    <img src="1.jpg" data-src="2.jpg" alt="" id="imgSrc">
+    imgSrc.src = imgSrc.getAttribute("data-src")  //getAttribute() 方法返回指定属性名的属性值。
+
+    //窗口滚动事件
+    window.onscroll = function(){
+      //获取当前滚动的距离
+      var top1 = document.body.scrollTop || document.documentElement.scrollTop || window.pageYOffset;
+    }
+
+dom节点（20181213）
+    var h2 = document.createElement("h2")  //增加dom节点，创建一个节点指定类型标签
+    First.appendChild(h2)      //指定的节点插入到element节点的末尾（在父级最后  添加一个子级元素h2）
+    First.appendChild(h2).innerHTML = "我是添加的h2"
+    // First.removeChild(domp)       //删除当前节点指定的子节点
+    domp.remove()                    //删除指定节点
+
+
+数组（20181205）
+    pop（）     删除返回数组的最后一个元素
+    shift（）    删除返回数组的第一个元素
+    push（）   在数组末尾增加一个或多个元素
+    indexOf()    返回字符串中检索指定字符第一次出现的位置 //var str =["asdsdkfj","a","sdfsdj"];  var str1 = str.indexOf("a")  答案：1
+    slice()          可从已有的数组中返回选定的元素  //var arr = [1,2,3,4,5]； var arr1 = arr.slice(1,4)  答案：arr1[2,3,4]   
+    join()           数组转字符串  //arrayObject.join(separator逗号作为分隔符。)
+
+
+字符串
+    charAt()      返回指定索引位置的字符   //var str = "asfdfjfkd"  var str1 = str.charAt(1)  答案：s
+    concat()      连接两个或多个字符串，返回连接后的字符串
+    indexOf()    返回字符串中第一次出现的位置  //var str = "abjhhfjk"  var str1 = str.indexOf("a")  答案：1
+    slice()          可从已有的数组中返回选定的元素
+    split()          把字符串分割为子字符串数组
+    substring()  提取字符串中两个指定的索引号之间的字符 //var str = "hsjhgjsff"; var str1 = str.substring(6,8)  答案：sf
+    sort()           字符串进行排序，arr.sort(function(){ return a-b})可以实现排序
+
+本地存储
+    localStorage：
+        localStorage.getItem(key):获取指定key本地存储的值
+        localStorage.setItem(key,value)：将value存储到key字段
+        localStorage.removeItem(key):删除指定key本地存储的值
+
+
+
+
+jq部分
+    attr("属性名","值")        一个值获取属性，两个值设置属性
+    remove()  移除属性
+    toggleClass("类名")    切换样式
+JQUERY
+`1、选择器（jquery可使用基本上所有的css选择器）
+  id选择器  $("#id")
+  class选择器  $(".class")
+  标签选择器 $("ele")
+
+ 2、jquery对象和dom转换
+  jquery对象转dom对象
+    1、下标  $(".class")[0]
+    2、通过get方法  $(".class").get(0)
+  dom转jquery对象
+    1、var aa = document.getElementsByClassName("aaa")
+      $(aa)
+
+ 3、jquery方法
+  1、设置、获取、移除属性
+    获取：attr("属性名")
+    设置：
+      一个属性：attr("属性名","值")
+      多个属性：attr({"属性名1":"值1","属性名2":"值2","属性名3":"值3"})
+    移除：removeAttr("属性名")
+
+    prop  设置、获取属性（input框专用）
+    removeProp
+
+  2、HTML代码/文本/值
+    .html() 里面不填参数是获取，填了就是设置
+    .text()
+    .val()  里面不填参数是获取，填了就是设置
+
+  3、类
+    添加: .addClass("类名");
+    移除：.removeClass("类名")
+    切换：toggleClass("类名")
+  
+  4、修改样式（行内样式）
+    获取：.css("样式名")
+    设置：
+      单个样式：.css("样式名","值")
+      多个样式：.css({"样式名1":"值1","样式名2":"值2"})
+
+  5、位置
+    偏移量：offset()   返回的是一个对象  {left:300,top:200} offset().top
+    定位的值：position()  返回的是一个对象
+    滚动偏移：scrollTop()  scrollLeft()
+
+  6、尺寸
+    宽度：width()
+    高度：height()
+
+    innerWidth(): 包括填充、不包括边框  == clientWidth
+    outerWidth(): 包括填充、包括边框  == offsetWidth
+
+  7、事件
+    1、支持所有js原生事件，jquery不带on
+      $("#id").click(function(){})
+    2、新增的事件
+      1、hover 集合了mouseover、mouseout
+        $("#id").hover(function(){鼠标移入的事件},function(){鼠标移除的事件})
+    3、绑定事件
+      on 
+        $("#id").on("click",function(event){})
+
+        事件委托
+        $(".box").on("click","li",function(){})
+
+      off
+        $("#id").off("click")
+
+  8、筛选
+    1、查找
+      1、children()  查找所有子元素的合集
+      2、find()  查找所有后代
+      3、next()  下一个元素
+      4、nextAll()  查找下面所有元素
+        nextUntil() 查找当前元素之后所有的同辈元素，直到遇到匹配的那个元素为止。但不包括那个选择器匹配到的元素
+      5、prev()  上一个元素
+      6、prevAll() 上面所有元素
+        prevUntil() 查找当前元素之前所有的同辈元素，直到遇到匹配的那个元素为止。但不包括那个选择器匹配到的元素
+      7、parent()  查找唯一父元素
+      8、parents() 查找所有父元素
+      9、parentsUntil() 找所有父元素，到什么为止,但不包括那个选择器匹配到的元素
+      10.siblings()  查找所有的同辈元素。除了自己以外
+    
+    2、过滤
+      1、eq(下标) 第几个元素
+      2、first()  第一个元素
+      3、last()  最后一个元素
+      4、hasClass() 判断jq对象是否具有某个class类 ，返回值是true、false。  
+
+  9、动画
+    1、隐藏显示
+      显示：show()  参数可以为毫秒数，也可以为"slow"和"fast"
+      隐藏：hide()
+      切换：toggle() 
+    2、滑动
+      向下滑：slideDown()
+      向上滑：slideUp()
+      切换：slideToggle()
+    3、淡入淡出
+      淡入：fadeIn()
+      淡出：fadeOut()
+      切换：fadeToggle()
+    4、自定义效果
+      animate(要改变的样式集合，时间slow、fast、毫秒数、动画的效果、回调函数)
+      stop(是否停止动画队列？，是否立即完成当前动画)
+      delay() 动画延时执行
+
+  10、文档处理
+    1、内部插入
+      append()
+      appendTo()
+      prepend()
+      prependTo()
+    2、外部插入
+      after()
+      insertAfter()
+      before()
+      insetBefore()
+    3、替换
+      replaceWith()
+    4、删除
+      remove()
+    5、复制
+      clone()
+
+日期和时间对象：
+    1.申明一个日期对象
+        var mydate = new Date；
+    方法：
+        获取年：getFullyear()
+        获取月：getMonth（）  从0开始  0-11
+        获取日：getDate（）
+        获取星期几：getDay（）  0-6
+        时    getHours（）
+        分    getMinutes（）
+        秒    getSeconds（）
+        毫秒 getMilliseconds（）
+        getTime（）    1970年1月1日0点到现在的毫秒数
+
+
+animation CSS3动画：
+     animation: move 1s infinite alternate;
+
+      animation: name duration timing-function delay iteration-count direction;
+      name              keyframe 名称。(必需，名称随意取)
+      duration          动画所花费的时间(必需)
+      timing-function   动画的速度曲线(默认：低速加快   ，linear匀速...)
+      delay             动画开始之前的延迟。(可选)
+      iteration-count   播放的次数。(n，infinite无限播放)
+      direction         轮流反向播放动画(默认normal正常播放，alternate正反向轮流)
+
+    @keyframes move{               scale()//比例
+      0%{
+        transform: scale(1)
+      }
+      100%{
+        transform: scale(1.4)
+      }
+    }
+
+
+
+CSS3选择器：
+    表单伪类
+        input:checked  表单被选中的时候样式
+        input:disabled 表单被禁用的样式
+        input:enabled 表单没有被禁用时的样式
+        input:focus  表单获取焦点时的样子
+    结构选择器
+        后代：.a1 .a2
+        子选择器：.a1>.a2
+        相邻兄弟：.a1+.a2
+    伪元素
+        ::afert
+        ::before
+        ::first-letter  选择第一个字母
+        ::first-line 选择首行
+        ::selection 用户选择中的
+  2、文字阴影、盒子阴影
+    text-shadow
+     水平位移的长度  可以为负值
+     垂直位移的长度  可以为负值
+     阴影的模糊程度  
+     阴影的颜色
+    box-shadow
+      水平的位置
+      垂直的位置
+      阴影的模糊程度
+      阴影的尺寸
+      阴影的颜色
+      阴影是内部还是外部 inset
+  3、边框图片
+    border-image:
+      图片的路径
+      图片向内偏移
+      图像边界的宽度
+      边框图像区域超出边框的量
+      图像边框是否应平铺(repeated)、铺满(rounded)或拉伸(stretched)。
+  4、font-face
+    网络字体
+
+  浏览器前缀
+    chrome、苹果浏览器  -webkit-
+    firefox  -moz-
+    ie  -ms-
+    欧朋浏览器  -o-
+    
+ 
+
+
+
+
+
+

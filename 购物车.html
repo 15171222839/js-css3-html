@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .box{
+      width:750px;
+      font-size: 14px;
+      line-height: 1.42857143;
+      color: #333;
+    }
+    .table{
+      width:100%;
+    }
+    tr{
+      display: table-row;
+      vertical-align: inherit;
+      border-color: inherit;
+    }
+    .table>thead>tr>th {
+      vertical-align: bottom;
+      border-bottom: 2px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+    tbody {
+      display: table-row-group;
+      vertical-align: middle;
+      border-color: inherit;
+    }
+    .table>thead>tr>th, .table>tbody>tr>th{
+      padding: 8px;
+      line-height: 1.42857143;
+      vertical-align: top;
+      border-top: 1px solid #ddd;
+    }
+    td{
+      align-content: center;
+    }
+    .money{
+      background:rgb(230,67,71);
+      color:white;
+      font-size: 18px;
+    }
+    .price{
+      background:rgb(255,244,232)
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <table class="table" >
+      <thead>
+        <tr>hammer超级店铺</tr>
+        <tr>
+          <th><input type="CheckBox" name="" class="All">全选</th>
+          <th>产品名字</th>
+          <th>购买数量</th>
+          <th>产品单价</th>
+          <th>产品总价</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="cc">
+          <td><input type="CheckBox" name="" class="some"></td>
+          <td>手撕风干牛肉</td>
+          <td>
+            <button type="button" class="btnReduce">-</button>
+            <input type="text" class="InputMount"  style="text-align: center;" value="1">
+            <button type="button"  class="btnAdd">+</button>
+          </td>
+          <td class="buyMount">￥50.00</td>
+          <td class="smallAllmoney">￥50.00</td>
+          <td><button class="del">删除</button></td>
+        </tr>
+        <tr class="cc">
+          <td><input type="CheckBox" name="" class="some"></td>
+          <td>无限薯片</td>
+          <td>
+            <button type="button" class="btnReduce">-</button>
+            <input type="text" class="InputMount"  style="text-align: center;" value="1">
+            <button type="button"  class="btnAdd">+</button>
+          </td>
+          <td class="buyMount">￥20.00</td>
+          <td class="smallAllmoney">￥20.00</td>
+          <td><button class="del">删除</button></td>
+        </tr>
+        <tr class="cc">
+          <td><input type="CheckBox" name="" class="some"></td>
+          <td>原味奶茶</td>
+          <td>
+            <button type="button" class="btnReduce">-</button>
+            <input type="text" class="InputMount" style="text-align: center;" value="1">
+            <button type="button"  class="btnAdd">+</button>
+          </td>
+          <td class="buyMount">￥5.00</td>
+          <td class="smallAllmoney">￥5.00</td>
+          <td><button class="del">删除</button></td>
+        </tr><br />
+        
+        <tr class="price">
+          <td>物件总数量</td>
+          <td></td>
+          <td  class="mount"></td>
+          <td>总购物价</td>
+          <td  class="money">￥0.00</td>
+          <td><button class="btn">清空购物车</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  	
+  <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+  <script>
+    //全选
+    $(".All").click(function(){
+      if($(this).is(":checked")){
+        $(".box").find("input[type='CheckBox']").prop("checked","checked");
+      }else{
+        $(".box").find("input[type='CheckBox']").removeProp("checked");
+      }
+      totalMoney()
+    })
+    //判断全选条件
+    $("tbody .some").click(function(){
+      if($(this).is(":checked")){
+        var num = 0;
+        for(var i=0;i<$("tbody .some").length;i++){
+          if($("tbody .some").eq(i).is(":checked")){
+            num++;
+          }
+        }
+        if(num == $("tbody .some").length){
+					$(".All").prop("checked","checked");
+        }
+			}else{
+				$(".All").removeProp("checked");
+      } 
+      totalMoney()
+    })
+    //计算数量+
+    $(".btnAdd").click(function(){
+      var goodsNum = parseInt($(this).prev(".InputMount").val())
+      var goodsPrice = $(this).parent().next().html().substring(1,3)
+      goodsNum += 1;
+      $(this).prev(".InputMount").val(goodsNum)//prev() 方法返回被选元素的前一个同级元素。
+      $(this).parent().next().next().html("￥"+goodsNum * goodsPrice+".00")
+
+      totalMoney();
+    })
+    //计算总价
+		function totalMoney(){
+			var total = 0;
+			var tot = 0;
+			$(".some").each(function(i){
+				if($(this).is(":checked")){
+					var num1 = parseInt($(this).parents().next().next().find(".InputMount").val());
+					var price = parseFloat($(this).parent().next().next().next().next().html().substring(1));
+					total += num1;
+          tot += price;
+				}
+      })
+      // console.log(num1)
+			$(".price").find(".mount").html(total+"件");
+			$(".price").find(".money").html("￥" + tot.toFixed(2));
+		}
+    //删除
+    $(".del").click(function(){
+      if($(this).parent().parent().children().find("input[type ='checkbox']").is(":checked")){
+        $(this).parent().parent().children().find("input[type ='checkbox']").removeProp("checked");
+
+        totalMoney()
+        $(this).parent().parent().remove()
+      }
+    })
+    $(".btn").click(function(){
+      if($(this).parents().find(".cc").find("input[type ='checkbox']").is(":checked")){
+        $(this).parents().find(".cc").find("input[type ='checkbox']").removeProp("checked")
+        totalMoney()
+        $(this).parents().find(".cc").remove()
+      }
+    })
+
+  </script>
+</body>
+</html>
