@@ -1,269 +1,74 @@
-C:\Users\yy>ipconfig/all       //·ÅÔÚ±¾µØ·şÎñÆ÷£¬ÊÖ»úä¯ÀÀ£¨ÎŞÏß¾ÖÓòÍø¡ª¡ª¡·IP4(Ê×Ñ¡)£©
+CSS3é€‰æ‹©å™¨ï¼š
+  1ã€å±æ€§é€‰æ‹©å™¨
+    [attr] å…·æœ‰è¿™ä¸ªå±æ€§çš„
+    [attr="val"] ç­‰äº
+    [attr~="val"] åŒ…å«å€¼
+    [attr|="val"] ä»¥ä»€ä¹ˆå¼€å¤´çš„ã€‚å¿…é¡»æ˜¯å•è¯
+    [attr^="val"] ä»¥ä»€ä¹ˆå¼€å¤´çš„,ä»»æ„å­—æ¯
+    [attr$="val"] ä»¥ä»€ä¹ˆç»“å°¾çš„
+    [attr*="val"] åŒ…å«å­—ç¬¦ä¸²çš„ã€‚
+  2ã€ç»“æ„é€‰æ‹©å™¨
+    åä»£ï¼š.a1 .a2
+    å­é€‰æ‹©å™¨ï¼š.a1>.a2
+    ç›¸é‚»å…„å¼Ÿï¼š.a1+.a2
+  3ã€ä¼ªç±»
+    a:link  a:active a:hover a:visited
 
-ÀÁ¼ÓÔØ+Ô¤¼ÓÔØ£¨20181217£©
-    var img = new Image()      //´´½¨Ò»¸öimg  ÏàËÆÓÚvar img = document.createElement("img")
-    console.log("ÒÑ¼ÓÔØ"+par.toFixed(0)+"%")  //toFixed() ·½·¨¿É°Ñ Number ËÄÉáÎåÈëÎªÖ¸¶¨Ğ¡ÊıÎ»ÊıµÄÊı×Ö¡£
+    :empty  é€‰æ‹©æ²¡æœ‰ä»»ä½•å­å…ƒç´ å’Œå†…å®¹çš„å…ƒç´ 
+    :first-child é€‰æ‹©ç¬¬ä¸€ä¸ªå­å…ƒç´   
+    :first-of-type é€‰æ‹©ç¬¬ä¸€ä¸ªå­å…ƒç´ 
+    :last-child
+    :last-of-type
+    :nth-child()
+    :nth-of-type() æ•°å­—ã€å¥‡æ•°odd å¶æ•°even æˆ–è€…ç”¨nè¡¨è¾¾  2n 2n+1
+    :only-child çˆ¶å…ƒç´ åªæœ‰å”¯ä¸€ä¸€ä¸ªå­å…ƒç´ çš„
+    :only-of-type
 
-    <img src="1.jpg" data-src="2.jpg" alt="" id="imgSrc">
-    imgSrc.src = imgSrc.getAttribute("data-src")  //getAttribute() ·½·¨·µ»ØÖ¸¶¨ÊôĞÔÃûµÄÊôĞÔÖµ¡£
+    è¡¨å•ä¼ªç±»
+    input:checked  è¡¨å•è¢«é€‰ä¸­çš„æ—¶å€™æ ·å¼
+    input:disabled è¡¨å•è¢«ç¦ç”¨çš„æ ·å¼
+    input:enabled è¡¨å•æ²¡æœ‰è¢«ç¦ç”¨æ—¶çš„æ ·å¼
+    input:focus  è¡¨å•è·å–ç„¦ç‚¹æ—¶çš„æ ·å­
 
-    //´°¿Ú¹ö¶¯ÊÂ¼ş
-    window.onscroll = function(){
-      //»ñÈ¡µ±Ç°¹ö¶¯µÄ¾àÀë
-      var top1 = document.body.scrollTop || document.documentElement.scrollTop || window.pageYOffset;
-    }
-
-dom½Úµã£¨20181213£©
-    var h2 = document.createElement("h2")  //Ôö¼Ódom½Úµã£¬´´½¨Ò»¸ö½ÚµãÖ¸¶¨ÀàĞÍ±êÇ©
-    First.appendChild(h2)      //Ö¸¶¨µÄ½Úµã²åÈëµ½element½ÚµãµÄÄ©Î²£¨ÔÚ¸¸¼¶×îºó  Ìí¼ÓÒ»¸ö×Ó¼¶ÔªËØh2£©
-    First.appendChild(h2).innerHTML = "ÎÒÊÇÌí¼ÓµÄh2"
-    // First.removeChild(domp)       //É¾³ıµ±Ç°½ÚµãÖ¸¶¨µÄ×Ó½Úµã
-    domp.remove()                    //É¾³ıÖ¸¶¨½Úµã
-
-
-Êı×é£¨20181205£©
-    pop£¨£©     É¾³ı·µ»ØÊı×éµÄ×îºóÒ»¸öÔªËØ
-    shift£¨£©    É¾³ı·µ»ØÊı×éµÄµÚÒ»¸öÔªËØ
-    push£¨£©   ÔÚÊı×éÄ©Î²Ôö¼ÓÒ»¸ö»ò¶à¸öÔªËØ
-    indexOf()    ·µ»Ø×Ö·û´®ÖĞ¼ìË÷Ö¸¶¨×Ö·ûµÚÒ»´Î³öÏÖµÄÎ»ÖÃ //var str =["asdsdkfj","a","sdfsdj"];  var str1 = str.indexOf("a")  ´ğ°¸£º1
-    slice()          ¿É´ÓÒÑÓĞµÄÊı×éÖĞ·µ»ØÑ¡¶¨µÄÔªËØ  //var arr = [1,2,3,4,5]£» var arr1 = arr.slice(1,4)  ´ğ°¸£ºarr1[2,3,4]   
-    join()           Êı×é×ª×Ö·û´®  //arrayObject.join(separator¶ººÅ×÷Îª·Ö¸ô·û¡£)
-
-
-×Ö·û´®
-    charAt()      ·µ»ØÖ¸¶¨Ë÷ÒıÎ»ÖÃµÄ×Ö·û   //var str = "asfdfjfkd"  var str1 = str.charAt(1)  ´ğ°¸£ºs
-    concat()      Á¬½ÓÁ½¸ö»ò¶à¸ö×Ö·û´®£¬·µ»ØÁ¬½ÓºóµÄ×Ö·û´®
-    indexOf()    ·µ»Ø×Ö·û´®ÖĞµÚÒ»´Î³öÏÖµÄÎ»ÖÃ  //var str = "abjhhfjk"  var str1 = str.indexOf("a")  ´ğ°¸£º1
-    slice()          ¿É´ÓÒÑÓĞµÄÊı×éÖĞ·µ»ØÑ¡¶¨µÄÔªËØ
-    split()          °Ñ×Ö·û´®·Ö¸îÎª×Ó×Ö·û´®Êı×é
-    substring()  ÌáÈ¡×Ö·û´®ÖĞÁ½¸öÖ¸¶¨µÄË÷ÒıºÅÖ®¼äµÄ×Ö·û //var str = "hsjhgjsff"; var str1 = str.substring(6,8)  ´ğ°¸£ºsf
-    sort()           ×Ö·û´®½øĞĞÅÅĞò£¬arr.sort(function(){ return a-b})¿ÉÒÔÊµÏÖÅÅĞò
-
-±¾µØ´æ´¢
-    localStorage£º
-        localStorage.getItem(key):»ñÈ¡Ö¸¶¨key±¾µØ´æ´¢µÄÖµ
-        localStorage.setItem(key,value)£º½«value´æ´¢µ½key×Ö¶Î
-        localStorage.removeItem(key):É¾³ıÖ¸¶¨key±¾µØ´æ´¢µÄÖµ
+  4ã€ä¼ªå…ƒç´ 
+    ::afert
+    ::before
+    ::first-letter  é€‰æ‹©ç¬¬ä¸€ä¸ªå­—æ¯
+    ::first-line é€‰æ‹©é¦–è¡Œ
+    ::selection ç”¨æˆ·é€‰æ‹©ä¸­çš„
 
 
-
-
-jq²¿·Ö
-    attr("ÊôĞÔÃû","Öµ")        Ò»¸öÖµ»ñÈ¡ÊôĞÔ£¬Á½¸öÖµÉèÖÃÊôĞÔ
-    remove()  ÒÆ³ıÊôĞÔ
-    toggleClass("ÀàÃû")    ÇĞ»»ÑùÊ½
-JQUERY
-`1¡¢Ñ¡ÔñÆ÷£¨jquery¿ÉÊ¹ÓÃ»ù±¾ÉÏËùÓĞµÄcssÑ¡ÔñÆ÷£©
-  idÑ¡ÔñÆ÷  $("#id")
-  classÑ¡ÔñÆ÷  $(".class")
-  ±êÇ©Ñ¡ÔñÆ÷ $("ele")
-
- 2¡¢jquery¶ÔÏóºÍdom×ª»»
-  jquery¶ÔÏó×ªdom¶ÔÏó
-    1¡¢ÏÂ±ê  $(".class")[0]
-    2¡¢Í¨¹ıget·½·¨  $(".class").get(0)
-  dom×ªjquery¶ÔÏó
-    1¡¢var aa = document.getElementsByClassName("aaa")
-      $(aa)
-
- 3¡¢jquery·½·¨
-  1¡¢ÉèÖÃ¡¢»ñÈ¡¡¢ÒÆ³ıÊôĞÔ
-    »ñÈ¡£ºattr("ÊôĞÔÃû")
-    ÉèÖÃ£º
-      Ò»¸öÊôĞÔ£ºattr("ÊôĞÔÃû","Öµ")
-      ¶à¸öÊôĞÔ£ºattr({"ÊôĞÔÃû1":"Öµ1","ÊôĞÔÃû2":"Öµ2","ÊôĞÔÃû3":"Öµ3"})
-    ÒÆ³ı£ºremoveAttr("ÊôĞÔÃû")
-
-    prop  ÉèÖÃ¡¢»ñÈ¡ÊôĞÔ£¨input¿ò×¨ÓÃ£©
-    removeProp
-
-  2¡¢HTML´úÂë/ÎÄ±¾/Öµ
-    .html() ÀïÃæ²»Ìî²ÎÊıÊÇ»ñÈ¡£¬ÌîÁË¾ÍÊÇÉèÖÃ
-    .text()
-    .val()  ÀïÃæ²»Ìî²ÎÊıÊÇ»ñÈ¡£¬ÌîÁË¾ÍÊÇÉèÖÃ
-
-  3¡¢Àà
-    Ìí¼Ó: .addClass("ÀàÃû");
-    ÒÆ³ı£º.removeClass("ÀàÃû")
-    ÇĞ»»£ºtoggleClass("ÀàÃû")
-  
-  4¡¢ĞŞ¸ÄÑùÊ½£¨ĞĞÄÚÑùÊ½£©
-    »ñÈ¡£º.css("ÑùÊ½Ãû")
-    ÉèÖÃ£º
-      µ¥¸öÑùÊ½£º.css("ÑùÊ½Ãû","Öµ")
-      ¶à¸öÑùÊ½£º.css({"ÑùÊ½Ãû1":"Öµ1","ÑùÊ½Ãû2":"Öµ2"})
-
-  5¡¢Î»ÖÃ
-    Æ«ÒÆÁ¿£ºoffset()   ·µ»ØµÄÊÇÒ»¸ö¶ÔÏó  {left:300,top:200} offset().top
-    ¶¨Î»µÄÖµ£ºposition()  ·µ»ØµÄÊÇÒ»¸ö¶ÔÏó
-    ¹ö¶¯Æ«ÒÆ£ºscrollTop()  scrollLeft()
-
-  6¡¢³ß´ç
-    ¿í¶È£ºwidth()
-    ¸ß¶È£ºheight()
-
-    innerWidth(): °üÀ¨Ìî³ä¡¢²»°üÀ¨±ß¿ò  == clientWidth
-    outerWidth(): °üÀ¨Ìî³ä¡¢°üÀ¨±ß¿ò  == offsetWidth
-
-  7¡¢ÊÂ¼ş
-    1¡¢Ö§³ÖËùÓĞjsÔ­ÉúÊÂ¼ş£¬jquery²»´øon
-      $("#id").click(function(){})
-    2¡¢ĞÂÔöµÄÊÂ¼ş
-      1¡¢hover ¼¯ºÏÁËmouseover¡¢mouseout
-        $("#id").hover(function(){Êó±êÒÆÈëµÄÊÂ¼ş},function(){Êó±êÒÆ³ıµÄÊÂ¼ş})
-    3¡¢°ó¶¨ÊÂ¼ş
-      on 
-        $("#id").on("click",function(event){})
-
-        ÊÂ¼şÎ¯ÍĞ
-        $(".box").on("click","li",function(){})
-
-      off
-        $("#id").off("click")
-
-  8¡¢É¸Ñ¡
-    1¡¢²éÕÒ
-      1¡¢children()  ²éÕÒËùÓĞ×ÓÔªËØµÄºÏ¼¯
-      2¡¢find()  ²éÕÒËùÓĞºó´ú
-      3¡¢next()  ÏÂÒ»¸öÔªËØ
-      4¡¢nextAll()  ²éÕÒÏÂÃæËùÓĞÔªËØ
-        nextUntil() ²éÕÒµ±Ç°ÔªËØÖ®ºóËùÓĞµÄÍ¬±²ÔªËØ£¬Ö±µ½Óöµ½Æ¥ÅäµÄÄÇ¸öÔªËØÎªÖ¹¡£µ«²»°üÀ¨ÄÇ¸öÑ¡ÔñÆ÷Æ¥Åäµ½µÄÔªËØ
-      5¡¢prev()  ÉÏÒ»¸öÔªËØ
-      6¡¢prevAll() ÉÏÃæËùÓĞÔªËØ
-        prevUntil() ²éÕÒµ±Ç°ÔªËØÖ®Ç°ËùÓĞµÄÍ¬±²ÔªËØ£¬Ö±µ½Óöµ½Æ¥ÅäµÄÄÇ¸öÔªËØÎªÖ¹¡£µ«²»°üÀ¨ÄÇ¸öÑ¡ÔñÆ÷Æ¥Åäµ½µÄÔªËØ
-      7¡¢parent()  ²éÕÒÎ¨Ò»¸¸ÔªËØ
-      8¡¢parents() ²éÕÒËùÓĞ¸¸ÔªËØ
-      9¡¢parentsUntil() ÕÒËùÓĞ¸¸ÔªËØ£¬µ½Ê²Ã´ÎªÖ¹,µ«²»°üÀ¨ÄÇ¸öÑ¡ÔñÆ÷Æ¥Åäµ½µÄÔªËØ
-      10.siblings()  ²éÕÒËùÓĞµÄÍ¬±²ÔªËØ¡£³ıÁË×Ô¼ºÒÔÍâ
-    
-    2¡¢¹ıÂË
-      1¡¢eq(ÏÂ±ê) µÚ¼¸¸öÔªËØ
-      2¡¢first()  µÚÒ»¸öÔªËØ
-      3¡¢last()  ×îºóÒ»¸öÔªËØ
-      4¡¢hasClass() ÅĞ¶Ïjq¶ÔÏóÊÇ·ñ¾ßÓĞÄ³¸öclassÀà £¬·µ»ØÖµÊÇtrue¡¢false¡£  
-
-  9¡¢¶¯»­
-    1¡¢Òş²ØÏÔÊ¾
-      ÏÔÊ¾£ºshow()  ²ÎÊı¿ÉÒÔÎªºÁÃëÊı£¬Ò²¿ÉÒÔÎª"slow"ºÍ"fast"
-      Òş²Ø£ºhide()
-      ÇĞ»»£ºtoggle() 
-    2¡¢»¬¶¯
-      ÏòÏÂ»¬£ºslideDown()
-      ÏòÉÏ»¬£ºslideUp()
-      ÇĞ»»£ºslideToggle()
-    3¡¢µ­Èëµ­³ö
-      µ­Èë£ºfadeIn()
-      µ­³ö£ºfadeOut()
-      ÇĞ»»£ºfadeToggle()
-    4¡¢×Ô¶¨ÒåĞ§¹û
-      animate(Òª¸Ä±äµÄÑùÊ½¼¯ºÏ£¬Ê±¼äslow¡¢fast¡¢ºÁÃëÊı¡¢¶¯»­µÄĞ§¹û¡¢»Øµ÷º¯Êı)
-      stop(ÊÇ·ñÍ£Ö¹¶¯»­¶ÓÁĞ£¿£¬ÊÇ·ñÁ¢¼´Íê³Éµ±Ç°¶¯»­)
-      delay() ¶¯»­ÑÓÊ±Ö´ĞĞ
-
-  10¡¢ÎÄµµ´¦Àí
-    1¡¢ÄÚ²¿²åÈë
-      append()
-      appendTo()
-      prepend()
-      prependTo()
-    2¡¢Íâ²¿²åÈë
-      after()
-      insertAfter()
-      before()
-      insetBefore()
-    3¡¢Ìæ»»
-      replaceWith()
-    4¡¢É¾³ı
-      remove()
-    5¡¢¸´ÖÆ
-      clone()
-
-ÈÕÆÚºÍÊ±¼ä¶ÔÏó£º
-    1.ÉêÃ÷Ò»¸öÈÕÆÚ¶ÔÏó
-        var mydate = new Date£»
-    ·½·¨£º
-        »ñÈ¡Äê£ºgetFullyear()
-        »ñÈ¡ÔÂ£ºgetMonth£¨£©  ´Ó0¿ªÊ¼  0-11
-        »ñÈ¡ÈÕ£ºgetDate£¨£©
-        »ñÈ¡ĞÇÆÚ¼¸£ºgetDay£¨£©  0-6
-        Ê±    getHours£¨£©
-        ·Ö    getMinutes£¨£©
-        Ãë    getSeconds£¨£©
-        ºÁÃë getMilliseconds£¨£©
-        getTime£¨£©    1970Äê1ÔÂ1ÈÕ0µãµ½ÏÖÔÚµÄºÁÃëÊı
-
-
-animation CSS3¶¯»­£º
-     animation: move 1s infinite alternate;
-
-      animation: name duration timing-function delay iteration-count direction;
-      name              keyframe Ãû³Æ¡£(±ØĞè£¬Ãû³ÆËæÒâÈ¡)
-      duration          ¶¯»­Ëù»¨·ÑµÄÊ±¼ä(±ØĞè)
-      timing-function   ¶¯»­µÄËÙ¶ÈÇúÏß(Ä¬ÈÏ£ºµÍËÙ¼Ó¿ì   £¬linearÔÈËÙ...)
-      delay             ¶¯»­¿ªÊ¼Ö®Ç°µÄÑÓ³Ù¡£(¿ÉÑ¡)
-      iteration-count   ²¥·ÅµÄ´ÎÊı¡£(n£¬infiniteÎŞÏŞ²¥·Å)
-      direction         ÂÖÁ÷·´Ïò²¥·Å¶¯»­(Ä¬ÈÏnormalÕı³£²¥·Å£¬alternateÕı·´ÏòÂÖÁ÷)
-
-    @keyframes move{               scale()//±ÈÀı
-      0%{
-        transform: scale(1)
-      }
-      100%{
-        transform: scale(1.4)
-      }
-    }
-
-
-
-CSS3Ñ¡ÔñÆ÷£º
-    ±íµ¥Î±Àà
-        input:checked  ±íµ¥±»Ñ¡ÖĞµÄÊ±ºòÑùÊ½
-        input:disabled ±íµ¥±»½ûÓÃµÄÑùÊ½
-        input:enabled ±íµ¥Ã»ÓĞ±»½ûÓÃÊ±µÄÑùÊ½
-        input:focus  ±íµ¥»ñÈ¡½¹µãÊ±µÄÑù×Ó
-    ½á¹¹Ñ¡ÔñÆ÷
-        ºó´ú£º.a1 .a2
-        ×ÓÑ¡ÔñÆ÷£º.a1>.a2
-        ÏàÁÚĞÖµÜ£º.a1+.a2
-    Î±ÔªËØ
-        ::afert
-        ::before
-        ::first-letter  Ñ¡ÔñµÚÒ»¸ö×ÖÄ¸
-        ::first-line Ñ¡ÔñÊ×ĞĞ
-        ::selection ÓÃ»§Ñ¡ÔñÖĞµÄ
-  2¡¢ÎÄ×ÖÒõÓ°¡¢ºĞ×ÓÒõÓ°
+æ–°å¢çš„æ ·å¼ï¼š
+  1ã€æ–°çš„é¢œè‰²è¡¨è¾¾æ–¹å¼
+    rgba
+    hsl
+    hsla
+  2ã€æ–‡å­—é˜´å½±ã€ç›’å­é˜´å½±
     text-shadow
-     Ë®Æ½Î»ÒÆµÄ³¤¶È  ¿ÉÒÔÎª¸ºÖµ
-     ´¹Ö±Î»ÒÆµÄ³¤¶È  ¿ÉÒÔÎª¸ºÖµ
-     ÒõÓ°µÄÄ£ºı³Ì¶È  
-     ÒõÓ°µÄÑÕÉ«
+     æ°´å¹³ä½ç§»çš„é•¿åº¦  å¯ä»¥ä¸ºè´Ÿå€¼
+     å‚ç›´ä½ç§»çš„é•¿åº¦  å¯ä»¥ä¸ºè´Ÿå€¼
+     é˜´å½±çš„æ¨¡ç³Šç¨‹åº¦  
+     é˜´å½±çš„é¢œè‰²
     box-shadow
-      Ë®Æ½µÄÎ»ÖÃ
-      ´¹Ö±µÄÎ»ÖÃ
-      ÒõÓ°µÄÄ£ºı³Ì¶È
-      ÒõÓ°µÄ³ß´ç
-      ÒõÓ°µÄÑÕÉ«
-      ÒõÓ°ÊÇÄÚ²¿»¹ÊÇÍâ²¿ inset
-  3¡¢±ß¿òÍ¼Æ¬
+      æ°´å¹³çš„ä½ç½®
+      å‚ç›´çš„ä½ç½®
+      é˜´å½±çš„æ¨¡ç³Šç¨‹åº¦
+      é˜´å½±çš„å°ºå¯¸
+      é˜´å½±çš„é¢œè‰²
+      é˜´å½±æ˜¯å†…éƒ¨è¿˜æ˜¯å¤–éƒ¨ inset
+  3ã€è¾¹æ¡†å›¾ç‰‡
     border-image:
-      Í¼Æ¬µÄÂ·¾¶
-      Í¼Æ¬ÏòÄÚÆ«ÒÆ
-      Í¼Ïñ±ß½çµÄ¿í¶È
-      ±ß¿òÍ¼ÏñÇøÓò³¬³ö±ß¿òµÄÁ¿
-      Í¼Ïñ±ß¿òÊÇ·ñÓ¦Æ½ÆÌ(repeated)¡¢ÆÌÂú(rounded)»òÀ­Éì(stretched)¡£
-  4¡¢font-face
-    ÍøÂç×ÖÌå
+      å›¾ç‰‡çš„è·¯å¾„
+      å›¾ç‰‡å‘å†…åç§»
+      å›¾åƒè¾¹ç•Œçš„å®½åº¦
+      è¾¹æ¡†å›¾åƒåŒºåŸŸè¶…å‡ºè¾¹æ¡†çš„é‡
+      å›¾åƒè¾¹æ¡†æ˜¯å¦åº”å¹³é“º(repeated)ã€é“ºæ»¡(rounded)æˆ–æ‹‰ä¼¸(stretched)ã€‚
+  4ã€font-face
+    ç½‘ç»œå­—ä½“
+  
 
-  ä¯ÀÀÆ÷Ç°×º
-    chrome¡¢Æ»¹ûä¯ÀÀÆ÷  -webkit-
+  æµè§ˆå™¨å‰ç¼€
+    chromeã€è‹¹æœæµè§ˆå™¨  -webkit-
     firefox  -moz-
     ie  -ms-
-    Å·Åóä¯ÀÀÆ÷  -o-
-    
- 
-
-
-
-
-
-
+    æ¬§æœ‹æµè§ˆå™¨  -o-

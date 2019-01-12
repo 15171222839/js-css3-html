@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing: border-box;
+    }
+    /* 清除浮动 */
+    .clearfix::after{
+      content:"";
+      display:block;
+      height:0;
+      line-height: 0;
+      clear:both;
+      visibility: hidden;
+    }
+    /* a[target]{
+      background-color:yellow;
+    } */
+    a:link{
+      color:black;
+    }
+    .all{
+      width:200px;
+      height:30px;
+      line-height: 30px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+      border:1px solid black;
+    }
+    /* a:visited{
+      color:red;
+    } */
+    /* a:active{
+      color:yellow;
+    } */
+    a:hover{
+      color:yellow;
+    }
+    #box:focus{
+      outline: none;
+    }
+    p::first-letter{
+      color:red;
+      font-size: 28px;
+    }
+    h1{
+      text-shadow: 4px 5px 5px grey;
+    }
+    .bow{
+      width:200px;
+      height:200px;
+      border:1px solid black;
+      box-shadow:0px 0px 5px red inset;
+      margin:0 auto;
+    }
+    @font-face {
+      font-family: "王羲之书法字体";
+      src: url("font/王羲之书法字体.woff2") format("woff2"),
+          url("font/王羲之书法字体.woff") format("woff"),
+          url("font/王羲之书法字体.ttf") format("truetype"),
+          url("font/王羲之书法字体.eot") format("embedded-opentype"),
+          url("font/王羲之书法字体.svg") format("svg");
+      font-weight: normal;
+      font-style: normal;
+    }
+    body{
+      font-family: "王羲之书法字体";
+    }
+    ul{
+      list-style: none;
+      width:600px;
+      height:200px;
+      border:1px solid red;
+    }
+    li{
+      float: left;
+      width:180px;
+      height: 180px;
+      border:1px solid red;
+      margin:2px;
+    }
+  </style>
+</head>
+<body>
+    <a href="##">w3school.com.cn</a>
+    <a href="##" target="_blank">disney.com</a>
+    <a href="##" target="_top">wikipedia.org</a>
+    <input type="text" id="box">
+    <p>杨金华够积极</p>
+    <h1>习大大够积极</h1>
+    <div class="bow"></div>
+    <p class="all">今天做毕设时遇到了一个小问题，我做了一个tab导航栏，点击一个tab页其它tab页隐藏，这时候第一想法是使用display：none来控制显示隐藏，</p><br>
+    <ul class="clearfix">
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+</body>
+</html>

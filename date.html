@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <h1 id="aaa"></h1>
+  <script>
+    var endtime = new Date("2020/1/1");
+    setInterval(function(){
+      var nowTime = new Date();
+      var time = endtime - nowTime;
+      var day = parseInt(time/1000/60/60/24)
+      var hour = parseInt(time/1000/60/60%24)
+      var m = parseInt(time/1000/60%60)
+      var s = parseInt(time/1000%60)
+      document.getElementById("aaa").innerHTML=("距离2020年1月1日还有"+day+"天，"+hour+"小时"+m+"分钟"+s+"秒")
+    },1000)
+    console.log(Date())
+  </script>
+</body>
+</html>
