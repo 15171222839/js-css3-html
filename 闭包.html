@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 1、
+    console.log(a);
+    var a = 12;
+    function fn1(){
+      console.log(a);
+      var a = 13;
+    }
+    fn1();
+    console.log(a)
+
+    // undefined，undefined，12
+
+
+    // 2、
+    console.log(a);
+    var a = 12;
+    function fn(){
+      console.log(a);
+      a = 13;
+    }
+    fn();
+    console.log(a)
+
+    // undefined，12，13
+
+    // 3、
+    console.log(a);
+    a = 12;
+    function fn(){
+      console.log(a);
+      var a = 13;
+    }
+    fn();
+    console.log(a)
+
+    // 报错
+
+    // 4
+    var a = 1;
+    function fn(){
+      if(!a){
+        var a = 10;
+      }
+      console.log(a);
+    }
+    fn()
+
+    //10
+
+
+    // 5
+    var a = 0;
+    function fn(){
+      var a = 10;
+      function fn2(){
+        a++;
+        console.log(a)
+      }
+      fn2();
+      return fn2;
+    }
+    var b = fn();
+    b();
+    console.log(a) 
+
+    //  11, 12, 0
+
+
+
+
+    // 6
+    var a = 10,b=11,c=12;
+    function fn(a){
+      a = 1;
+      var b = 2;
+      c = 3;
+    }
+    fn(10)
+    console.log(a)
+    console.log(b)
+    console.log(c)
+
+    //10,11,3
+
+    // 7
+    var a = 9;
+    function fn(){
+      a = 0;
+      return function(b){
+        return b+a++
+      }
+    }
+    var f = fn();
+    console.log(f(5))
+    console.log(fn()(5));
+    console.log(f(5))
+    console.log(a)
+
+    //5,5,6,2
+
+    // 8
+    function fn(a){
+      return function(b){
+        console.log(b+(a++))
+      }
+    }
+    var f = fn(10);
+    f(20);
+    fn(20)(40)
+    fn(40)(50)
+    f(30)
+  </script>
+</body>
+</html>

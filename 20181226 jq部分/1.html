@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    *{
+      margin:0;
+      padding:0;
+    }
+    #box{
+      width:400px;
+      height:500px;
+      background: black;
+      margin:0 auto;
+    }
+    #kuang{
+      width:300px;
+      margin:10px 50px 0 50px;
+      background:rgb(64,60,59);
+    }
+    #logo{
+      margin-left:100px;
+      width:144px;
+      height:144px;
+    }
+    ul{
+      list-style: none;
+    }
+    ul>li{
+      height:40px;
+      color:white;
+      font-size: 18px;
+      line-height: 40px;
+      background:rgb(224,101,104);
+      border-top:1px solid white;
+    }
+    p{
+      height:40px;
+      color:white;
+      font-size: 18px;
+      line-height: 40px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div id="box">
+    <div id="kuang">
+      <div id="logo">
+        <img src="2xkinglogo.png" alt="">
+      </div>
+      <p>购买清单</p>
+      <ul>
+        <li>蔬菜</li>
+        <li>松子</li>
+        <li>水果</li>
+        <li>苹果醋</li>
+      </ul>
+    </div>
+    
+    <script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+    <script>
+      $("li").hide().each(function(index){
+        $(this).delay(300*index).fadeIn(1500);
+      })
+      $("ul").on("click","li",function(){
+        $(this).remove($(this).fadeOut())
+      })
+    </script>
+  </div>
+</body>
+</html>

@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    /* logo上下运动的动画 */
+    @-webkit-keyframes headMove{
+      0%{
+        transform: translateY(0)
+      }
+      100%{
+        transform: translateY(20px)
+      }
+    }
+    /* 小鸟扇翅膀的动画 */
+    @-webkit-keyframes fly{
+      0%{
+        background: url("img/bird0.png")
+      }
+      100%{
+        background: url("img/bird1.png")
+      }
+    }
+    #wrap{
+      width: 343px;
+      height: 480px;
+      background: url("img/bg.jpg");
+      margin:0 auto;
+      position: relative;
+    }
+    #head{
+      position: absolute;
+      left: 18%;
+      top:24%;
+      animation: headMove 1s linear infinite alternate;
+    }
+    #head span{
+      position: absolute;
+      background: url("img/bird0.png") 0 0 no-repeat;
+      width: 40px;
+      height: 26px;
+      right: 0;
+      top:10%;
+      animation: fly 0.5s linear infinite alternate;
+    }
+    #start{
+      position: absolute;
+      top:50%;
+      left: 50%;
+      margin-left: -42px;
+      cursor: pointer;
+    }
+    #score{
+      position: absolute;
+      left: 0;
+      top: 20px;
+      width: 100%;
+      text-align: center;
+    }
+    #slide{
+      position: absolute;
+      width: 100%;
+      left: 0;
+      height: 14px;
+      bottom:43px;
+      overflow: hidden;
+    }
+    #slide_img{
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 686px;
+    } 
+    #slide_img img{
+      float: left;
+    }
+    #bird{
+      position: absolute;
+      top:100px;
+      left:30px;
+      display: none;
+    }
+    #ductWrap{
+      height: 423px;
+    }
+    .duct{
+      width: 62px;
+      height: 423px;
+      border:1px solid #f00;
+      position: absolute;
+      top:0;
+      left: 0;
+    }
+    .upDcuct{
+      width: 62px;
+      background: url("img/up_mod.png") 0 0 repeat-y;
+      position: relative;
+    }
+    .upDcuct img{
+      position: absolute;
+      bottom:0;
+      left: 0;
+    }
+    .downDcuct{
+      width: 62px;
+      background: url("img/down_mod.png") 0 0 repeat-y;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+    }
+  </style>
+</head>
+<body>
+  <div id="wrap">
+    <!-- logo -->
+    <div id="head">
+      <img src="img/head.jpg">
+      <span></span>
+    </div>
+    <!-- 开始按钮 -->
+    <div id="start"><img src="img/start.jpg"></div>
+    <!-- 分数 -->
+    <div id="score">
+      <img src="img/0.jpg">
+    </div>
+    <!-- 草坪 -->
+    <div id="slide">
+      <div id="slide_img">
+        <img src="img/banner.jpg">
+        <img src="img/banner.jpg">
+      </div>
+    </div>
+    <!-- 游戏界面的小鸟 -->
+    <img src="img/down_bird0.png" id="bird">
+    <!-- 游戏区域，作为柱子的容器 -->
+    <div id="ductWrap"></div>
+  </div>
+
+
+  <script>
+    function $(id){
+      return document.getElementById(id);
+    }
+    function randomNum(min,max){
+      return Math.floor(Math.random()*(max-min+1)+min)
+    }
+    //鸟的定时器
+    var birdTimer = null
+    //柱子的定时器
+    var ductTimer = null
+    //默认分数
+    var score = 0;
+    //草坪滚动定时器
+    var slideTime = setInterval(function(){
+      if($("slide_img").offsetLeft <= - $("slide_img").offsetWidth / 2){
+        $("slide_img").style.left = 0
+      }else{
+        $("slide_img").style.left = $("slide_img").offsetLeft - 1 + "px"
+      }
+    },20)
+    //点击开始按钮
+    $("start").onclick = function(){
+      //logo、开始按钮隐藏
+      this.style.display = "none";
+      $("head").style.display = "none";
+      // 游戏界面的小鸟要显示，并且自动下落
+      $("bird").style.display = "block";
+      birdMove()
+      //创建柱子并让柱子移动
+      ductMove()
+    }
+    //柱子移动的函数
+    function ductMove(){
+      ductTimer = setInterval(function(){
+        //每隔3秒钟创建一个柱子
+        var ductDiv = document.createElement("div");
+        ductDiv.className = "duct";
+        ductDiv.style.left = "360px";
+        //往大柱子里面添加两个小的柱子
+        createSmallDuct(ductDiv);
+        //让分数只加一次
+        ductDiv.add = true;
+        $("ductWrap").appendChild(ductDiv);
+        ductDiv.timer = setInterval(function(){
+          if(ductDiv.offsetLeft < -62){
+            clearInterval(ductDiv.timer);
+            ductDiv.remove();
+          }else if(ductDiv.offsetLeft < -30){
+            if(ductDiv.add){
+              changeScore()
+              ductDiv.add = false;
+            }
+          }
+          ductDiv.style.left = ductDiv.offsetLeft - 2 + "px"
+          //鸟与柱子的碰撞检测
+          //先获取柱子容器里面所有的柱子
+          var ductArr = $("ductWrap").children;
+          for(var i=0;i<ductArr.length;i++){
+            var smallDuctArr = ductArr[i].children;
+            for(var j=0;j<smallDuctArr.length;j++){
+              var isImpact = impact($("bird"),smallDuctArr[j])
+              if(isImpact){
+                clearTimer();
+                gameOver()
+              }
+            }
+          }
+        },30)
+      },5000)
+    }
+    //创建上下柱子的方法
+    function createSmallDuct(obj){
+      //随机上面柱子的高度
+      var upH = randomNum(60,200);
+      //创建一个上面的柱子
+      var upDiv = document.createElement("div");
+      upDiv.className = "upDcuct";
+      upDiv.style.height = upH + "px";
+      var upImg = document.createElement("img");
+      upImg.src = "img/up_pipe.png";
+      upDiv.appendChild(upImg);
+      //创建下面的柱子
+      var downDiv = document.createElement("div");
+      downDiv.className = "downDcuct";
+      downDiv.style.height = $("ductWrap").offsetHeight - upH - 163 + "px";
+      var downImg = document.createElement("img");
+      downImg.src = "img/down_pipe.png";
+      downDiv.appendChild(downImg);
+      //把创建的两个小柱子添加到大柱子里面
+      obj.appendChild(upDiv)
+      obj.appendChild(downDiv)
+    }
+    //改变分数的方法
+    function changeScore(){
+      score++;
+      $("score").innerHTML = "";
+      var scoreStr = String(score);
+      for(var i=0;i<scoreStr.length;i++){
+        var img = document.createElement("img");
+        img.src = "img/" + scoreStr[i] + ".jpg";
+        $("score").appendChild(img)
+      }
+    }
+    // 封装鸟移动的函数
+    function birdMove(){
+      // 鸟的初始速度
+      $("bird").speed = 0;
+      birdTimer = setInterval(function(){
+        //鸟的速度要持续增加
+        $("bird").speed += 0.5;
+        if($("bird").speed >= 5){
+          $("bird").speed = 5
+        }
+        // 速度小于0，鸟是往上移动，大于0，鸟是往下掉的。
+        if($("bird").speed < 0){
+          $("bird").src = "img/up_bird0.png"
+        }else{
+          $("bird").src = "img/down_bird0.png"
+        }
+        //鸟的上下碰撞
+        if($("bird").offsetTop <= 0){
+          //清除所有定时器
+          //游戏结束
+          clearTimer();
+          gameOver()
+        }else if($("bird").offsetTop + $("bird").offsetHeight >= $("slide").offsetTop){
+          //清除所有定时器
+          //游戏结束
+          clearTimer();
+          gameOver()
+        }else{
+          $("bird").style.top = $("bird").offsetTop + $("bird").speed + "px";
+        }
+
+        
+
+      },30)
+    }
+
+    //鼠标点击
+    $("wrap").onclick = function(){
+      $("bird").speed = -5;
+      //return false;
+    }
+    //碰撞检测
+    function impact(obj1,obj2){
+     // console.log(obj2)
+      var l = obj1.offsetLeft + obj1.offsetWidth >= obj2.parentNode.offsetLeft;
+      var r = obj1.offsetLeft <= obj2.parentNode.offsetLeft + obj2.offsetWidth;
+      var t = obj1.offsetTop + obj1.offsetHeight >= obj2.offsetTop;
+      var d = obj1.offsetTop <= obj2.offsetTop + obj2.offsetHeight;
+      return l && r && t && d
+    }
+
+    //清除所有定时器
+    function clearTimer(){
+      var timer = setTimeout(function(){
+        for(var i=0;i<timer;i++){
+          clearInterval(i)
+        }
+      },0)
+    }
+    function gameOver(){
+      setTimeout(function(){
+        alert("Game Over!!!");
+      },10)
+      
+    }
+  </script>
+</body>
+</html>

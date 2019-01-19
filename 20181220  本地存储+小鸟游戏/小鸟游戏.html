@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Document</title>
+  <style>
+    #wrap{
+      width:343px;
+      height: 480px;
+      margin:0 auto;
+      position:relative;
+      background:url("./img/bg.jpg") 0 0 no-repeat;
+      overflow:hidden;
+    }
+    #head{
+      position:absolute;
+      left:76px;
+      top:100px;
+    }
+    #feiSpan{
+      background:url("./img/bird0.png") 0 0 no-repeat;
+      width: 40px;
+      height: 30px;
+      position:absolute;
+      right:30px;
+      top:0;
+    }
+    #score{
+      position:absolute;
+      left:40%;
+      top:30px;
+      z-index:99;
+    }
+    #start{
+      position:absolute;
+      left:50%;
+      top:50%;
+      margin-left:-43px;
+    }
+    #slider{
+      position:absolute;
+      left:0;
+      width:100%;
+      bottom:57px;
+    }
+    #slider_img{
+      width:200%;
+      position:absolute;
+      left:0;
+      top:0;
+    }
+    #slider_img img{
+      float:left;
+    }
+    #bird{
+      position:absolute;
+      left:30px;
+      top:40%;
+      display:none;
+    }
+    .zz{
+      width: 62px;
+      height: 423px;
+      position:absolute;
+      top:0;
+      right:40px;
+      /* border:1px solid red; */
+    }
+    #zz1{
+      width: 62px;
+      height: 423px;
+      position:absolute;
+      top:0;
+      right:0;
+    }
+    .up{
+      background:url("./img/up_mod.png") 0 0 repeat;
+      position:absolute;
+      left:0;
+      top:0;
+      width:100%;
+    }
+    .up img{
+      position:absolute;
+      left:0;
+      bottom:0;
+    }
+    .down{
+      background:url("./img/down_mod.png") 0 0 repeat;
+      position:absolute;
+      left:0;
+      bottom:0;
+      width:100%;
+    }
+    .down>img{
+      position:absolute;
+      left:0;
+      top:0;
+    }
+  </style>
+</head>
+<body>
+  <div id="wrap">
+    <div id="head">
+      <img src="img/head.jpg" />
+      <span id="feiSpan"></span>
+    </div>
+    <div id="start">
+        <img src="img/start.jpg" />
+    </div>
+    <div id="score">
+        <img src="img/0.jpg" id="fenshu0"/>
+        <img src="img/0.jpg" id="fenshu"/>
+    </div>
+    <!-- 底部的草坪 -->
+    <div id="slider">
+      <div id="slider_img">
+        <img src="img/banner.jpg" />
+        <img src="img/banner.jpg" />
+      </div>
+    </div>
+    <!-- 游戏界面 -->
+    <img src="img/down_bird0.png" id="bird" />
+    <!-- 游戏界面的柱子容器 -->
+    <div class="zz"></div>
+    <div class="zz" id="zz1"></div>
+  </div>
+
+  <script>
+    function $(id){
+      return document.getElementById(id)
+    }
+    function randomNum(min,max){
+      return Math.floor(Math.random()*(max-min+1)+min);
+    }
+    var isShang = true;
+    var speed =2;
+    //草坪滚动事件
+    var timer = setInterval(function(){
+    if($("slider").offsetLeft <= -$("slider").offsetWidth){
+      $("slider").style.left = 0;
+    }else{
+      $("slider").style.left = $("slider").offsetLeft - 2 + "px"
+    }  
+    //页面动画飞鸟
+    if(isShang){
+      $("feiSpan").style.background = 'url("img/down_bird1.png") 0 0 no-repeat'
+        isShang = false;
+      }else{
+        $("feiSpan").style.background = 'url("img/down_bird0.png") 0 0 no-repeat'
+        isShang = true;
+      }
+    },100)
+    //开始游戏
+    $("start").onclick = function(){
+      $("head").style.display = "none";
+      $("start").style.display = "none";
+      $("bird").style.display = "block"
+      zzAdd();
+      //进入游戏小鸟运动
+      console.log(speed)
+      var t = setInterval(function(){
+        $("bird").style.top = $("bird").offsetTop + speed + "px"
+        speed++;
+        if($("bird").offsetTop > $("wrap").offsetHeight - $("bird").offsetHeight -30){
+          //存储分数
+          var msg = localStorage.getItem("key");
+					if(num>msg){
+						localStorage.setItem("key",num);
+						alert("创建了前所未有的记录！新纪录"+num+"分");
+					};
+
+          alert("GAME OVER!")
+          clearTimer()
+          window.location.reload();
+        }
+        //小鸟在下落过程中扇动翅膀
+        if(speed > 0){
+          if(isShang){
+            $('bird').src  = "img/down_bird1.png"
+              isShang = false;
+            }else{
+              $('bird').src  = "img/down_bird0.png"
+              isShang = true;
+            }
+        }else if(speed < 0){
+          if(isShang){
+            $('bird').src  = "img/up_bird0.png"
+              isShang = false;
+            }else{
+              $('bird').src  = "img/up_bird1.png"
+              isShang = true;   
+            }
+        }else{
+          if(isShang){
+            $('bird').src  = 'img/bird0.png';
+            isShang = false;
+          }else{
+            $('bird').src = 'img/bird1.png';
+            isShang = true;
+          }
+        }
+      },100)
+    }
+    //键盘事件
+    document.onkeydown = function(e){
+      var code = e.keyCode
+      switch(code){
+        case 32 :
+        speed = -5;
+        break;
+      }
+    }
+    //创建柱子的上下两个部分
+    function createZzChild(zz){
+      var upH = randomNum(60,213);
+      var upDiv = document.createElement("div");
+      upDiv.className = "up";
+      upDiv.style.height = upH + "px";
+      //创建一个图片，
+      var upImg = document.createElement("img");
+      upImg.src = "img/up_pipe.png";
+      upDiv.appendChild(upImg);
+
+      var downDiv = document.createElement("div");
+      downDiv.className = "down";
+      downDiv.style.height = (423 - upH - 150) + "px"
+      var downImg = document.createElement("img");
+      downImg.src = "img/down_pipe.png";
+      downDiv.appendChild(downImg);
+
+      zz.appendChild(upDiv)
+      zz.appendChild(downDiv)
+    }
+    //创建柱子
+    function zzAdd(){
+      var zz = document.querySelector(".zz")
+      createZzChild(zz)
+      var zzUp = document.querySelector(".up")
+      var zzDown = document.querySelector(".down")
+      var m = 0,n = 0;num = 0;
+      var moveZZ = setInterval(function(){
+        if(zz.offsetLeft <= -zz.offsetWidth){
+          m++;num++;
+          m = m % 10; 
+          if(m == 0){
+            n++;
+          }
+          $("fenshu").src = "img/"+m+".jpg"
+          $("fenshu0").src = "img/"+n+".jpg"
+          zz.style.left = $("wrap").offsetWidth + "px"
+        }
+        zz.style.left = zz.offsetLeft - 2 + "px" 
+        //碰撞事件
+        //判断柱子碰撞条件
+        if((zz.offsetLeft <= (30 + $("bird").offsetWidth) && $("bird").offsetTop <= zzUp.offsetHeight) || (zz.offsetLeft <= (30 + zz.offsetWidth/2) && $("bird").offsetTop >= (zzDown.offsetTop-30))){
+          clearInterval(moveZZ)
+          //存储分数
+          var msg = localStorage.getItem("key");
+					if(num>msg){
+						localStorage.setItem("key",num);
+						alert("创建了前所未有的记录！新纪录"+num+"分");
+					};
+          clearTimer()
+        }
+      },50)
+    }
+    //清楚所有的定时器
+    function clearTimer(){
+      var timer = setTimeout(function(){
+        for(var i=0;i<timer;i++){
+          clearInterval(i)
+        }
+      },0)
+    }
+  </script>
+</body>
+</html>

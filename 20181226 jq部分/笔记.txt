@@ -1,0 +1,126 @@
+﻿JQUERY
+`1、选择器（jquery可使用基本上所有的css选择器）
+  id选择器  $("#id")
+  class选择器  $(".class")
+  标签选择器 $("ele")
+
+ 2、jquery对象和dom转换
+  jquery对象转dom对象
+    1、下标  $(".class")[0]
+    2、通过get方法  $(".class").get(0)
+  dom转jquery对象
+    1、var aa = document.getElementsByClassName("aaa")
+      $(aa)
+
+ 3、jquery方法
+  1、设置、获取、移除属性
+    获取：attr("属性名")
+    设置：
+      一个属性：attr("属性名","值")
+      多个属性：attr({"属性名1":"值1","属性名2":"值2","属性名3":"值3"})
+    移除：removeAttr("属性名")
+
+    prop  设置、获取属性（input框专用）
+    removeProp
+
+  2、HTML代码/文本/值
+    .html() 里面不填参数是获取，填了就是设置
+    .text()
+    .val()  里面不填参数是获取，填了就是设置
+
+  3、类
+    添加: .addClass("类名");
+    移除：.removeClass("类名")
+    切换：toggleClass("类名")
+  
+  4、修改样式（行内样式）
+    获取：.css("样式名")
+    设置：
+      单个样式：.css("样式名","值")
+      多个样式：.css({"样式名1":"值1","样式名2":"值2"})
+
+  5、位置
+    偏移量：offset()   返回的是一个对象  {left:300,top:200} offset().top
+    定位的值：position()  返回的是一个对象
+    滚动偏移：scrollTop()  scrollLeft()
+
+  6、尺寸
+    宽度：width()
+    高度：height()
+
+    innerWidth(): 包括填充、不包括边框  == clientWidth
+    outerWidth(): 包括填充、包括边框  == offsetWidth
+
+  7、事件
+    1、支持所有js原生事件，jquery不带on
+      $("#id").click(function(){})
+    2、新增的事件
+      1、hover 集合了mouseover、mouseout
+        $("#id").hover(function(){鼠标移入的事件},function(){鼠标移除的事件})
+    3、绑定事件
+      on 
+        $("#id").on("click",function(event){})
+
+        事件委托
+        $(".box").on("click","li",function(){})
+
+      off
+        $("#id").off("click")
+
+  8、筛选
+    1、查找
+      1、children()  查找所有子元素的合集
+      2、find()  查找所有后代
+      3、next()  下一个元素
+      4、nextAll()  查找下面所有元素
+        nextUntil() 查找当前元素之后所有的同辈元素，直到遇到匹配的那个元素为止。但不包括那个选择器匹配到的元素
+      5、prev()  上一个元素
+      6、prevAll() 上面所有元素
+        prevUntil() 查找当前元素之前所有的同辈元素，直到遇到匹配的那个元素为止。但不包括那个选择器匹配到的元素
+      7、parent()  查找唯一父元素
+      8、parents() 查找所有父元素
+      9、parentsUntil() 找所有父元素，到什么为止,但不包括那个选择器匹配到的元素
+      10.siblings()  查找所有的同辈元素。除了自己以外
+    
+    2、过滤
+      1、eq(下标) 第几个元素
+      2、first()  第一个元素
+      3、last()  最后一个元素
+      4、hasClass() 判断jq对象是否具有某个class类 ，返回值是true、false。  
+
+  9、动画
+    1、隐藏显示
+      显示：show()  参数可以为毫秒数，也可以为"slow"和"fast"
+      隐藏：hide()
+      切换：toggle() 
+    2、滑动
+      向下滑：slideDown()
+      向上滑：slideUp()
+      切换：slideToggle()
+    3、淡入淡出
+      淡入：fadeIn()
+      淡出：fadeOut()
+      切换：fadeToggle()
+    4、自定义效果
+      animate(要改变的样式集合，时间slow、fast、毫秒数、动画的效果、回调函数)
+      stop(是否停止动画队列？，是否立即完成当前动画)
+      delay() 动画延时执行
+
+  10、文档处理
+    1、内部插入
+      append()
+      appendTo()
+      prepend()
+      prependTo()
+    2、外部插入
+      after()
+      insertAfter()
+      before()
+      insetBefore()
+    3、替换
+      replaceWith()
+    4、删除
+      remove()
+    5、复制
+      clone()
+ 

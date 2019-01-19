@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    #box{
+      width:300px;
+      height:600px;
+      border:2px solid black;
+      margin:0 auto;
+      position:relative;
+    }
+    #ball{
+      width:50px;
+      height:50px;
+      border-radius:50px;
+      background:red;
+      position:absolute;
+    }
+  </style>
+</head>
+<body>
+  <div id="box">
+    <div id="ball"></div>
+  </div>
+
+  <script>
+    function $(id){
+      return document.getElementById(id);
+    }
+    var speed = 0;
+    var box = document.getElementById("box")
+    var ball = document.getElementById("ball")
+    var timer = setInterval(function(){
+      speed+=2
+      ball.style.top = ball.offsetTop + speed + "px"
+      if(box.clientHeight - ball.offsetTop == 48 ||ball.offsetTop == 0){
+        speed = speed * -1
+      }
+      if(box.clientHeight - ball.offsetTop == 46){
+      clearInterval(timer)
+    }
+      console.log(ball.offsetLeft)
+      console.log(ball.offsetWidth)
+    },10)
+    
+  </script>
+</body>
+</html>

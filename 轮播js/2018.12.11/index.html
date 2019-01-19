@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+		.box{
+			position: relative;
+			width:200px;
+			height:200px;
+			font-size: 20px;
+			color:#fff;
+			text-align: center;
+			line-height: 200px;
+			border: 1px solid #F0C72B;
+			border-radius: 10px;
+			background: #43370C;
+		}
+		.wrap{
+			position: relative;
+			width: 400px;
+			height:403px;
+			border:5px solid #000;
+		}
+		.wrap>div{
+			position: absolute;
+			width:40px;
+			height:40px;
+			font-size: 15px;
+			text-align: center;
+			line-height: 40px;
+			color:#fff;
+			background: #43370C;
+		}
+	</style>
+</head>
+<body>
+  <div class="box" id="div1">1.匀速运动</div><hr>
+	<div class="box" id="div2">2.匀加速运动</div><hr>
+  <div class="box" id="div3">3.匀减速运动</div><hr>
+  <div class="box" id="div4">4.缓冲运动</div><hr>
+  <div class="box" id="div5">5.弹性运动</div><hr>
+  <div class="wrap" id="wrap1">
+    7.碰撞运动
+    <div id="div7">click</div>
+  </div><hr>
+  <div class="wrap" id="wrap2">
+    8.碰撞及重力运动
+    <div id="div8">click</div>
+  </div>
+  
+  
+  <script src="animation.js"></script>
+  <script>
+    function $(id){
+      return document.getElementById(id);
+    }
+    // 1.匀速
+    $("div1").onclick = function(){
+      uniformMove(this,1300);
+    }
+    //2.匀加速
+    $("div2").onclick = function(){
+      uniformMove(this,1300,'','','up');
+    }
+    //3.匀减速
+    $("div3").onclick = function(){
+      uniformMove(this,1300,'','','down');
+    }
+    //4.缓冲运动
+    $("div4").onclick = function(){
+      bufferMove(this,1300,'',10);
+    }
+    //5.弹性运动
+    $("div5").onmouseover = function(){
+      flexMove(this,'width',1000);
+    }
+    $("div5").onmouseout = function(){
+      flexMove(this,'width',200);
+    }
+
+    $("div7").onclick = function(){
+      knockMove(this,$("wrap1"),1,2,false)
+    }
+    $("div8").onclick = function(){
+      knockMove(this,$("wrap2"),1,3,true)
+    }
+  </script>
+</body>
+</html>

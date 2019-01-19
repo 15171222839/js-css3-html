@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    *{
+      margin:0;
+      padding:0;
+    }
+    #box{
+      width: 600px;
+      height: 200px;
+      margin:0 auto;
+      overflow:hidden;
+      position:relative;
+    }
+    ul{
+      list-style: none;
+      /* width:3000px; */
+      position:absolute;
+      transition: all 1s;
+    }
+    li{
+      float: left;
+      font-size:14px;
+      line-height:30px;
+    }
+    li>img{
+      width: 600px;
+      height: 200px;
+    }
+    #prev,#next{
+      width:40px;
+      height:80px;
+      background:rgba(0, 0, 0,0.5);
+      position:absolute;
+      top:50%;
+      margin-top:-40px;
+      text-align: center;
+      font-size:40px;
+      font-family:"宋体";
+      line-height:80px;
+      text-decoration:none;
+      color:white;
+    }
+    #prev{
+      left:0;
+    }
+    #next{
+      right:0;
+    }
+    #dots{
+      position:absolute;
+      text-align:center;
+      left:0;
+      width:100%;
+      bottom:10px;
+    }
+    #dots>span{
+      display:inline-block;
+      width:12px;
+      height:12px;
+      border-radius:50%;
+      background:#fff;
+      margin:0 4px;
+      cursor:pointer;
+    }
+    #dots>span.active{
+      background:#f00;
+    }
+  </style>
+</head>
+<body>
+    <div id="box">
+      <ul id="list">
+        <li><img src="images/1.jpg" alt=""></li>
+        <li><img src="images/2.jpg" alt=""></li>
+        <li><img src="images/3.jpg" alt=""></li>
+        <li><img src="images/4.jpg" alt=""></li>
+        <li><img src="images/5.jpg" alt=""></li>
+      </ul>
+      <a href="javascript:;" id="prev">&lt</a>
+      <a href="javascript:;" id="next">&gt</a>
+      <div id="dots">
+        <!-- <span class="active"></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span> -->
+      </div>
+    </div>
+    <script>
+      function $(id){
+        return document.getElementById(id)
+      }
+      var num = 0
+      var oLi = $("list").getElementsByTagName("li")
+      var oSpan = $("dots").getElementsByTagName("span")
+      //自动添加小圆点
+      var str = ""
+      for(var i = 0;i < oLi.length;i++){
+        str+="<span></span>"
+      }
+      console.log($("dots"))
+      $("dots").innerHTML = str  //innerHTML 属性设置或返回表格行的开始和结束标签之间的 HTML。
+      $("list").style.width = oLi[0].offsetWidth * oLi.length + "px"
+
+      //点击下一张
+      $("next").onclick = function(){
+        num++;
+        if(num == oLi.length){
+          num = 0
+        }
+        dom();
+      }
+      //点击上一张
+      $("prev").onclick = function(){
+        num--;
+        if(num == -1){
+          num = oLi.length -1;
+        }
+        dom();
+      }
+      //点击小圆点并加背景颜色
+      for(var i = 0;i < oSpan.length;i++){
+        oSpan[i].index = i
+        oSpan[i].onclick = function(){
+          num = this.index
+          //获取小圆点
+          for(var i = 0;i < oSpan.length;i++){
+            oSpan[i].className = ""
+          }
+          oSpan[num].className = "active"
+          $("list").style.left = -(oLi[1].offsetLeft) * num + "px"
+          console.log(num)
+        } 
+      }
+      //封装一个小圆点事件
+      function dom(){
+        for(var i = 0;i < oSpan.length;i++){
+            oSpan[i].className = ""
+          }
+          oSpan[num].className = "active"
+          $("list").style.left = -(oLi[1].offsetLeft) * num + "px"
+      }
+      dom();
+      //自动跳转事件
+      var timer = setInterval(function(){
+        num++;
+        if(num == oLi.length){
+          num =0;
+        }
+        dom();
+      },2000)
+      //鼠标放上清楚定时器
+      $("box").onmouseover = function(){
+        clearInterval(timer)
+      }
+      //鼠标离开定时器清除
+      $("box").onmouseout = function(){
+          timer = setInterval(function(){
+          num++;
+          if(num == oLi.length){
+            num =0;
+          }
+          dom();
+        },2000)
+      }
+    </script>
+</body>
+</html>

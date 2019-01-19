@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+     body {
+      margin: 0;
+      padding: 40px;
+      background: #fff;
+      font: 80% Arial, Helvetica, sans-serif;
+      color: #555;
+      line-height: 180%;
+    }
+    li {
+      list-style: none;
+      float: left;
+      display: inline;
+      margin-right: 10px;
+      border: 1px solid #AAAAAA;
+    }
+    .tooltip > img {
+      width: 200px;
+    }
+    #tooltip > img {
+      width: 400px;
+    }
+    #tooltip {
+      position: absolute;
+      border: 1px solid #ccc;
+      background: #333;
+      padding: 2px;
+      display: none;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <h3>有效果：</h3>
+		<ul>
+			<li>
+				<a href="img/apple1.jpeg" class="tooltip" title="苹果 iPod"><img src="img/apple1.jpeg" alt="apple watch" /></a>
+			</li>
+			<li>
+				<a href="img/apple2.jpeg" class="tooltip" title="苹果 iPod nano"><img src="img/apple2.jpeg" alt="iPod shuffle" /></a>
+			</li>
+			<li>
+				<a href="img/apple3.jpeg" class="tooltip" title="苹果 iPhone"><img src="img/apple3.jpeg" alt="iPod touch" /></a>
+			</li>
+			<li>
+				<a href="img/apple4.jpeg" class="tooltip" title="苹果 Mac"><img src="img/apple4.jpeg" alt="iPod nano" /></a>
+			</li>
+    </ul>
+    
+    <script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+    <script>
+      $(function() {
+        var x = 10;
+        var y = 20;
+        $("a.tooltip").mouseover(function(e) {
+          this.myTitle = this.title;
+          this.title = "";
+          var imgTitle = this.myTitle ? "<br/>" + this.myTitle : "";
+          var tooltip = "<div id='tooltip'><img src='" + this.href + "' alt='产品预览图'/>" + imgTitle + "<\/div>"; //创建 div 元素
+          $("body").append(tooltip); //把它追加到文档中						 
+          $("#tooltip")
+            .css({
+              "top": (e.pageY + y) + "px",
+              "left": (e.pageX + x) + "px"
+            }).show("fast"); //设置x坐标和y坐标，并且显示
+          }).mouseout(function() {
+            this.title = this.myTitle;
+            $("#tooltip").remove(); //移除 
+          }).mousemove(function(e) {
+            $("#tooltip")
+              .css({
+                "top": (e.pageY + y) + "px",
+                "left": (e.pageX + x) + "px"
+              });
+          });
+        })
+    </script>
+
+</body>
+</html>

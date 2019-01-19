@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    *{
+      margin:0;
+      padding:0;
+    }
+    body{
+      background:grey;
+    }
+    .box{
+      width:200px;
+      height:200px;
+      position:relative;
+      margin: 100px auto;
+    }
+    .box .img,.box .text{
+      position: absolute;
+      width:100%;
+      height: 100%;
+      border-radius: 50%;
+      left:0;
+      top:0;
+    }
+    .box .img{
+      transition: all 0.5s;
+    }
+    .text{
+      transform: translateX(-200px);
+      background:rgba(0,0,0,0.5);
+      opacity: 0;
+      z-index:1;
+      /* 阻止鼠标事件 */
+      pointer-events: none;
+      transition: all 0.5s;
+    }
+    .box .img img{
+      width:100%;
+      height:100%;
+      border-radius: 50%;
+    }
+    .img::after{
+      content:"";
+      position:absolute;
+      width:100%;
+      height:100%;
+      border:10px solid rgba(255, 255, 255, 0.5);
+      border-radius: 50%;
+      left:0;
+      top:0;
+      box-sizing: border-box;
+      z-index:2;
+    }
+    .box:hover .img{
+      transform: rotate(-180deg);
+    }
+    .box:hover .text{
+      transform: translateX(0);
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <div class="img"><img src="bb.jpg" alt=""></div>
+    <div class="text"></div>
+  </div>
+</body>
+</html>

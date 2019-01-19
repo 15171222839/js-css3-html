@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <button id="btn">停止</button>
+  <button id="btn1">继续</button>
+  <script>
+    function $(id){
+      return document.getElementById(id)
+    }
+    // var a=0;
+    // function fn(){
+    //   var a=10;
+    //   function fn2(){
+    //     a++;
+    //     console.log(a)
+    //   }
+    //   fn2();
+    //   return fn2;
+    // }
+    // var b =fn();
+    // b();
+    // console.log(a)
+
+    // var a = 9;
+    // function fn(){
+    //   a = 0;
+    //   return function(b){
+    //     return b+a++
+    //   }
+    // }
+    // var f = fn();
+    // console.log(f(5))
+
+    //定时器
+    var timer = setInterval(function(){
+      console.log(1)
+    },1000)
+
+    $("btn").onclick = function(){
+      clearInterval(timer)
+    }
+    $("btn1").onclick = function(){
+      timer = setInterval(function(){
+        console.log(1)
+      },1000)
+    }
+  </script>
+</body>
+</html>
